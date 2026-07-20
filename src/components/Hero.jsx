@@ -126,19 +126,34 @@ export default function Hero() {
             {/* Glow ring beneath character */}
             <div className="absolute bottom-6 left-1/2 h-6 w-40 -translate-x-1/2 rounded-full bg-accent-blue/40 blur-2xl" />
 
-            {ORBIT_CARDS.map(({ label, icon: Icon, className }) => (
+            {ORBIT_CARDS.map(({ label, icon: Icon, className }, i) => (
               <div
                 key={label}
-                className={`absolute flex w-28 flex-col items-center gap-2 rounded-2xl border border-white/10 bg-base-850/90 px-3 py-4 text-center shadow-lg backdrop-blur-sm ${className}`}
+                style={{
+                  animation: `orbit-float 4.5s ease-in-out ${i * 0.35}s infinite`,
+                }}
+                className={`absolute ${className}`}
               >
-                <Icon size={20} className="text-accent-blue" />
-                <span className="text-[11px] font-medium leading-tight text-white/80">
-                  {label}
-                </span>
+                <div className="group flex w-28 flex-col items-center gap-2 rounded-2xl border border-white/10 bg-base-850/90 px-3 py-4 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-accent-blue/50 hover:shadow-[0_0_25px_rgba(56,132,255,0.35)]">
+                  <Icon
+                    size={20}
+                    className="text-accent-blue transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <span className="text-[11px] font-medium leading-tight text-white/80 transition-colors duration-300 group-hover:text-white">
+                    {label}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
+
+        <style>{`
+          @keyframes orbit-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+          }
+        `}</style>
 
         {/* Intro strip */}
         <div className="mt-16 rounded-3xl border border-white/10 bg-base-900/60 p-6 lg:p-8">
