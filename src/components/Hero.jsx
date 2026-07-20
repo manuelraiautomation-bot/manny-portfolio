@@ -148,7 +148,7 @@ export default function Hero() {
               </div>
               <div>
                 <p className="font-display text-base font-semibold">
-                  Hi, I&rsquo;m Manny! 👋
+                  Hi, I&rsquo;m Manuel! 👋
                 </p>
                 <p className="mt-1 text-sm leading-relaxed text-white/50">
                   An AI Tech VA &amp; Automation Specialist passionate about

@@ -1,11 +1,23 @@
-import { ArrowUp, Linkedin, Github, MessageCircle } from "lucide-react";
+import { ArrowUp, Linkedin, Briefcase, Globe } from "lucide-react";
 
 const LINKS = ["Home", "About", "Services", "Portfolio", "Testimonials", "Contact"];
 
 const SOCIALS = [
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: MessageCircle, label: "Telegram", href: "#" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/manuel-rebutido-89b21b1a8/",
+  },
+  {
+    icon: Briefcase,
+    label: "Upwork",
+    href: "https://www.upwork.com/freelancers/~015bf2b2e2fb5aa980?mp_source=share",
+  },
+  {
+    icon: Globe,
+    label: "OnlineJobs.ph",
+    href: "https://v2.onlinejobs.ph/jobseekers/info/829881",
+  },
 ];
 
 export default function Footer() {
@@ -21,7 +33,7 @@ export default function Footer() {
               </div>
               <div className="leading-tight">
                 <p className="font-display text-sm font-semibold text-white">
-                  Manny De Guzman
+                  Manuel Rebutido
                 </p>
                 <p className="text-xs text-white/50">
                   AI Tech VA &amp; Automation Specialist
@@ -53,6 +65,8 @@ export default function Footer() {
               <a
                 key={label}
                 href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-white/25 hover:text-white"
               >
@@ -70,7 +84,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-white/5 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Manny De Guzman. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Manuel Rebutido. All rights reserved.</p>
           <p>Built with React, Vite &amp; Tailwind CSS.</p>
         </div>
       </div>

@@ -45,7 +45,7 @@ export default function About() {
               </div>
               <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-base-950/80 p-4 backdrop-blur-sm">
                 <p className="font-display text-sm font-semibold text-white">
-                  Manny De Guzman
+                  Manuel Rebutido
                 </p>
                 <p className="mt-0.5 text-xs text-white/50">
                   AI Tech VA &amp; Automation Specialist
@@ -77,7 +77,7 @@ export default function About() {
             </h2>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60">
-              I&rsquo;m Manny — an AI Tech VA and automation specialist who
+              I&rsquo;m Manuel — an AI Tech VA and automation specialist who
               spent years inside real business operations before moving into
               automation. That background means I don&rsquo;t just connect
               tools; I understand the workflow behind them, so what I build

@@ -6,20 +6,32 @@ import {
   Clock3,
   Send,
   Linkedin,
-  Github,
-  MessageCircle,
+  Briefcase,
+  Globe,
 } from "lucide-react";
 
 const CONTACT_INFO = [
-  { icon: Mail, label: "Email", value: "hello@mannydeguzman.dev" },
+  { icon: Mail, label: "Email", value: "manuelr.aiautomation@gmail.com" },
   { icon: MapPin, label: "Based in", value: "Philippines · Remote-first" },
   { icon: Clock3, label: "Availability", value: "Open for new projects" },
 ];
 
 const SOCIALS = [
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: MessageCircle, label: "Telegram", href: "#" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/manuel-rebutido-89b21b1a8/",
+  },
+  {
+    icon: Briefcase,
+    label: "Upwork",
+    href: "https://www.upwork.com/freelancers/~015bf2b2e2fb5aa980?mp_source=share",
+  },
+  {
+    icon: Globe,
+    label: "OnlineJobs.ph",
+    href: "https://v2.onlinejobs.ph/jobseekers/info/829881",
+  },
 ];
 
 export default function Contact() {
@@ -85,6 +97,8 @@ export default function Contact() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-white/25 hover:text-white"
                 >

@@ -24,7 +24,7 @@ export default function Navbar() {
           </div>
           <div className="leading-tight">
             <p className="font-display text-sm font-semibold text-white">
-              Manny De Guzman
+              Manuel Rebutido
             </p>
             <p className="text-xs text-white/50">
               AI Tech VA &amp; Automation Specialist
