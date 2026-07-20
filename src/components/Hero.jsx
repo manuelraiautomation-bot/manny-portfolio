@@ -11,6 +11,7 @@ import {
   Cog,
   ShieldCheck,
 } from "lucide-react";
+import robotCharacter from "../assets/robot-character.png";
 
 const TOOLS = ["OpenAI", "n8n", "Make", "Google Workspace", "Notion", "Airtable"];
 
@@ -114,11 +115,13 @@ export default function Hero() {
 
           {/* Right: illustration + orbit cards */}
           <div className="relative mx-auto h-[26rem] w-full max-w-md lg:h-[30rem]">
-            {/* Character placeholder — swap this div for your own illustration/image */}
-            <div className="absolute left-1/2 top-1/2 flex h-56 w-56 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-base-700 to-base-900 shadow-glow ring-1 ring-white/10 lg:h-64 lg:w-64">
-              <span className="font-display text-6xl font-extrabold text-white/20">
-                M
-              </span>
+            {/* Character illustration */}
+            <div className="absolute left-1/2 top-1/2 flex h-72 w-72 -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:h-80 lg:w-80">
+              <img
+                src={robotCharacter}
+                alt="AI assistant character"
+                className="h-full w-full object-contain drop-shadow-[0_0_40px_rgba(56,132,255,0.35)]"
+              />
             </div>
             {/* Glow ring beneath character */}
             <div className="absolute bottom-6 left-1/2 h-6 w-40 -translate-x-1/2 rounded-full bg-accent-blue/40 blur-2xl" />
