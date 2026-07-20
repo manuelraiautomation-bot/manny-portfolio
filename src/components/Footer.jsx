@@ -1,7 +1,79 @@
+import { ArrowUp, Linkedin, Github, MessageCircle } from "lucide-react";
+
+const LINKS = ["Home", "About", "Services", "Portfolio", "Testimonials", "Contact"];
+
+const SOCIALS = [
+  { icon: Linkedin, label: "LinkedIn", href: "#" },
+  { icon: Github, label: "GitHub", href: "#" },
+  { icon: MessageCircle, label: "Telegram", href: "#" },
+];
+
 export default function Footer() {
   return (
-    <section id="footer" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      {/* TODO: build Footer section */}
-    </section>
+    <footer id="footer" className="border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+          {/* Brand */}
+          <div className="max-w-xs">
+            <a href="#home" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient font-display text-lg font-bold shadow-glow">
+                M
+              </div>
+              <div className="leading-tight">
+                <p className="font-display text-sm font-semibold text-white">
+                  Manny De Guzman
+                </p>
+                <p className="text-xs text-white/50">
+                  AI Tech VA &amp; Automation Specialist
+                </p>
+              </div>
+            </a>
+            <p className="mt-4 text-sm leading-relaxed text-white/45">
+              Helping businesses save time and scale with AI automation,
+              smart systems, and seamless integrations.
+            </p>
+          </div>
+
+          {/* Nav links */}
+          <nav className="flex flex-wrap gap-x-8 gap-y-3">
+            {LINKS.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                className="text-sm text-white/60 transition-colors hover:text-white"
+              >
+                {link}
+              </a>
+            ))}
+          </nav>
+
+          {/* Socials + back to top */}
+          <div className="flex items-center gap-3">
+            {SOCIALS.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-white/25 hover:text-white"
+              >
+                <Icon size={17} />
+              </a>
+            ))}
+            <a
+              href="#home"
+              aria-label="Back to top"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-gradient text-white shadow-glow transition-transform hover:scale-105"
+            >
+              <ArrowUp size={17} />
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/5 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Manny De Guzman. All rights reserved.</p>
+          <p>Built with React, Vite &amp; Tailwind CSS.</p>
+        </div>
+      </div>
+    </footer>
   );
 }
