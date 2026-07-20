@@ -134,12 +134,22 @@ export default function Hero() {
                 }}
                 className={`absolute ${className}`}
               >
-                <div className="group flex w-28 flex-col items-center gap-2 rounded-2xl border border-white/10 bg-base-850/90 px-3 py-4 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-accent-blue/50 hover:shadow-[0_0_25px_rgba(56,132,255,0.35)]">
+                <div
+                  className="hologram-card group relative flex w-28 flex-col items-center gap-2 overflow-hidden rounded-2xl px-3 py-4 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+                  style={{ animationDelay: `${i * 0.6}s` }}
+                >
+                  {/* Holographic gradient border */}
+                  <span className="hologram-border" aria-hidden="true" />
+                  {/* Diagonal light sweep */}
+                  <span className="hologram-scan" aria-hidden="true" />
+                  {/* Fine scanlines */}
+                  <span className="hologram-lines" aria-hidden="true" />
+
                   <Icon
                     size={20}
-                    className="text-accent-blue transition-transform duration-300 group-hover:scale-110"
+                    className="hologram-icon relative z-10 transition-transform duration-300 group-hover:scale-110"
                   />
-                  <span className="text-[11px] font-medium leading-tight text-white/80 transition-colors duration-300 group-hover:text-white">
+                  <span className="relative z-10 text-[11px] font-medium leading-tight text-white/85 transition-colors duration-300 group-hover:text-white">
                     {label}
                   </span>
                 </div>
@@ -152,6 +162,116 @@ export default function Hero() {
           @keyframes orbit-float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+          }
+
+          /* --- Hologram card effect --- */
+          .hologram-card {
+            background:
+              linear-gradient(135deg, rgba(56,132,255,0.16), rgba(168,85,247,0.16) 35%, rgba(236,72,153,0.14) 60%, rgba(45,212,191,0.16) 85%, rgba(56,132,255,0.16)),
+              rgba(10, 14, 26, 0.55);
+            background-size: 300% 300%, 100% 100%;
+            background-blend-mode: normal;
+            border: 1px solid rgba(255,255,255,0.12);
+            animation: hologram-shift 7s ease-in-out infinite;
+          }
+
+          .hologram-card:hover {
+            border-color: rgba(255,255,255,0.22);
+          }
+
+          /* Animated iridescent border ring */
+          .hologram-border {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(115deg,
+              rgba(56,132,255,0.95),
+              rgba(168,85,247,0.9),
+              rgba(236,72,153,0.85),
+              rgba(45,212,191,0.9),
+              rgba(56,132,255,0.95));
+            background-size: 300% 300%;
+            animation: hologram-shift 5s ease-in-out infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.55;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+          }
+
+          .group:hover .hologram-border {
+            opacity: 1;
+          }
+
+          /* Diagonal glossy light sweep, like a hologram catching light */
+          .hologram-scan {
+            position: absolute;
+            top: -60%;
+            left: -40%;
+            width: 60%;
+            height: 220%;
+            background: linear-gradient(
+              75deg,
+              transparent 0%,
+              rgba(255,255,255,0.05) 35%,
+              rgba(255,255,255,0.28) 50%,
+              rgba(255,255,255,0.05) 65%,
+              transparent 100%
+            );
+            transform: rotate(8deg);
+            animation: hologram-sweep 3.6s ease-in-out infinite;
+            mix-blend-mode: screen;
+            pointer-events: none;
+          }
+
+          /* Faint horizontal scanlines for a projected-display feel */
+          .hologram-lines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+              0deg,
+              rgba(255,255,255,0.05) 0px,
+              rgba(255,255,255,0.05) 1px,
+              transparent 1px,
+              transparent 3px
+            );
+            opacity: 0.35;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+          }
+
+          .hologram-icon {
+            color: #7fd8ff;
+            filter: drop-shadow(0 0 6px rgba(56,132,255,0.65));
+            animation: hologram-hue 6s linear infinite;
+          }
+
+          @keyframes hologram-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+          }
+
+          @keyframes hologram-sweep {
+            0% { left: -60%; }
+            50% { left: 110%; }
+            100% { left: 110%; }
+          }
+
+          @keyframes hologram-hue {
+            0% { filter: drop-shadow(0 0 6px rgba(56,132,255,0.65)) hue-rotate(0deg); }
+            50% { filter: drop-shadow(0 0 8px rgba(236,72,153,0.6)) hue-rotate(150deg); }
+            100% { filter: drop-shadow(0 0 6px rgba(56,132,255,0.65)) hue-rotate(360deg); }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .hologram-card,
+            .hologram-border,
+            .hologram-scan,
+            .hologram-icon {
+              animation: none !important;
+            }
           }
         `}</style>
 
