@@ -7,6 +7,7 @@ import {
   Database,
   MessageSquare,
 } from "lucide-react";
+import profilePhoto from "../assets/manuel-rebutido.jpg";
 
 const HIGHLIGHTS = [
   "7+ years remote-ops experience, the last several spent building AI-driven automation systems",
@@ -38,11 +39,11 @@ export default function About() {
           {/* Left: portrait block */}
           <div className="relative mx-auto w-full max-w-sm lg:mx-0">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-base-800 to-base-900 shadow-glow">
-              <div className="flex h-full w-full items-center justify-center">
-                <span className="font-display text-8xl font-extrabold text-white/10">
-                  M
-                </span>
-              </div>
+              <img
+                src={profilePhoto}
+                alt="Manuel Rebutido"
+                className="h-full w-full object-cover"
+              />
               <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-base-950/80 p-4 backdrop-blur-sm">
                 <p className="font-display text-sm font-semibold text-white">
                   Manuel Rebutido
