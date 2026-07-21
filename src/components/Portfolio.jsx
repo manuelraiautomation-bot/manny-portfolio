@@ -7,7 +7,12 @@ import {
   AlertCircle,
   Lightbulb,
   TrendingUp,
+  Sparkles,
 } from "lucide-react";
+
+// Fills out trailing grid slots so the layout doesn't end on a lonely
+// half-empty row. Purely visual — not clickable, not part of PROJECTS.
+const COMING_SOON_COUNT = 2;
 
 /* ---------------------------------------------------------
    ASSET NOTE:
@@ -167,6 +172,24 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
         </p>
       </div>
     </button>
+  );
+}
+
+function ComingSoonCard() {
+  return (
+    <div
+      aria-hidden="true"
+      className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-light-border bg-light-surface/40 p-5 text-center dark:border-white/10 dark:bg-base-900/25"
+    >
+      <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-light-border/70 dark:border-white/10">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-light-surfaceMuted text-light-muted dark:bg-white/5 dark:text-white/40">
+          <Sparkles size={16} />
+        </div>
+        <span className="text-xs font-semibold uppercase tracking-wide text-light-muted dark:text-white/40">
+          Coming Soon
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -336,6 +359,9 @@ export default function Portfolio() {
               reducedMotion={reducedMotion}
               onOpen={() => setActiveIndex(i)}
             />
+          ))}
+          {Array.from({ length: COMING_SOON_COUNT }).map((_, i) => (
+            <ComingSoonCard key={`coming-soon-${i}`} />
           ))}
         </div>
 
