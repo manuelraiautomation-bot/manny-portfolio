@@ -1,31 +1,34 @@
-import { Sparkles, Workflow, Bot, Database, MessageCircle, LayoutGrid } from "lucide-react";
+import { Sparkles, MessagesSquare, Palette } from "lucide-react";
+import {
+  SiN8N,
+  SiMake,
+  SiZapier,
+  SiClaude,
+  SiGooglegemini,
+  SiAirtable,
+  SiGooglesheets,
+  SiNotion,
+  SiTelegram,
+  SiGmail,
+  SiGoogle,
+} from "react-icons/si";
 
-const SKILL_GROUPS = [
-  {
-    icon: Workflow,
-    title: "Automation Platforms",
-    tools: ["n8n", "Make", "Zapier", "GoHighLevel"],
-  },
-  {
-    icon: Bot,
-    title: "AI & LLMs",
-    tools: ["OpenAI", "Claude", "Gemini"],
-  },
-  {
-    icon: Database,
-    title: "Data & CRM",
-    tools: ["Airtable", "Google Sheets", "Notion"],
-  },
-  {
-    icon: MessageCircle,
-    title: "Communication",
-    tools: ["Telegram Bot API", "Slack", "Gmail"],
-  },
-  {
-    icon: LayoutGrid,
-    title: "Productivity & Design",
-    tools: ["Google Workspace", "Canva"],
-  },
+const TOOLS = [
+  { name: "n8n", Icon: SiN8N, color: "#EA4B71" },
+  { name: "Make", Icon: SiMake, color: "#6D00CC" },
+  { name: "Zapier", Icon: SiZapier, color: "#FF4F00" },
+  { name: "GoHighLevel", initials: "GHL", color: "#0EA5E9" },
+  { name: "OpenAI", Icon: Sparkles, color: "#10A37F" },
+  { name: "Claude", Icon: SiClaude, color: "#D97757" },
+  { name: "Gemini", Icon: SiGooglegemini, color: "#8B5CF6" },
+  { name: "Airtable", Icon: SiAirtable, color: "#FCB400" },
+  { name: "Google Sheets", Icon: SiGooglesheets, color: "#188038" },
+  { name: "Notion", Icon: SiNotion, color: "#111111", bg: "#ffffff" },
+  { name: "Telegram Bot API", Icon: SiTelegram, color: "#26A5E4" },
+  { name: "Slack", Icon: MessagesSquare, color: "#611F69" },
+  { name: "Gmail", Icon: SiGmail, color: "#EA4335" },
+  { name: "Google Workspace", Icon: SiGoogle, color: "#4285F4" },
+  { name: "Canva", Icon: Palette, color: "#8B3DFF" },
 ];
 
 export default function Skills() {
@@ -53,28 +56,27 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {SKILL_GROUPS.map(({ icon: Icon, title, tools }) => (
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {TOOLS.map(({ name, Icon, initials, color, bg }) => (
             <div
-              key={title}
-              className="rounded-2xl border border-light-border bg-light-surface p-6 shadow-sm transition-colors hover:border-light-text/20 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none dark:hover:border-white/20"
+              key={name}
+              className="group flex flex-col items-center gap-3 rounded-2xl border border-light-border bg-light-surface p-5 text-center shadow-sm transition-all hover:-translate-y-0.5 hover:border-light-text/20 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none dark:hover:border-white/20"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient shadow-glow">
-                <Icon size={20} className="text-white" />
-              </div>
-              <h3 className="mt-5 font-display text-base font-semibold text-light-text dark:text-white">
-                {title}
-              </h3>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="rounded-full border border-light-border bg-light-surfaceMuted px-3 py-1 text-xs font-medium text-light-muted dark:border-white/10 dark:bg-white/5 dark:text-white/70"
-                  >
-                    {tool}
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:scale-105"
+                style={{ backgroundColor: bg ?? `${color}1A`, color }}
+              >
+                {initials ? (
+                  <span className="text-[11px] font-bold tracking-tight">
+                    {initials}
                   </span>
-                ))}
+                ) : (
+                  <Icon size={22} />
+                )}
               </div>
+              <span className="text-xs font-medium leading-tight text-light-muted dark:text-white/70">
+                {name}
+              </span>
             </div>
           ))}
         </div>
