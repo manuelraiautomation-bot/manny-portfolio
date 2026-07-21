@@ -1,7 +1,16 @@
 import { ArrowUp, Linkedin, Briefcase, Globe } from "lucide-react";
 import mbrLogo from "../assets/mbr-logo.jpg";
 
-const LINKS = ["Home", "About", "Services", "Portfolio", "Testimonials", "Contact"];
+const LINKS = [
+  "Home",
+  "About",
+  "Experience",
+  "Services",
+  "Portfolio",
+  "Skills",
+  "Testimonials",
+  "Contact",
+];
 
 const SOCIALS = [
   {
