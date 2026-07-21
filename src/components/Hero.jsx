@@ -53,7 +53,7 @@ export default function Hero() {
       {/* Ambient background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-[-10rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-accent-teal/10 opacity-70 blur-[120px] dark:bg-accent-teal/20 dark:opacity-100" />
-        <div className="absolute right-0 top-1/3 h-[24rem] w-[24rem] rounded-full bg-accent-orange/10 opacity-70 blur-[110px] dark:bg-accent-orange/20 dark:opacity-100" />
+        <div className="absolute right-0 top-1/3 h-[24rem] w-[24rem] rounded-full bg-accent-tealLight/10 opacity-70 blur-[110px] dark:bg-accent-tealLight/15 dark:opacity-100" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 pb-16 pt-14 lg:px-10 lg:pt-20">
@@ -164,10 +164,10 @@ export default function Hero() {
             50% { transform: translateY(-10px); }
           }
 
-          /* --- Hologram card effect: teal-led, gold accent, elegant not busy --- */
+          /* --- Hologram card effect: teal only, elegant not busy --- */
           .hologram-card {
             background:
-              linear-gradient(135deg, rgba(20,184,166,0.16), rgba(20,184,166,0.08) 40%, rgba(245,196,81,0.14) 70%, rgba(20,184,166,0.16)),
+              linear-gradient(135deg, rgba(20,184,166,0.16), rgba(20,184,166,0.07) 40%, rgba(45,212,191,0.16) 70%, rgba(20,184,166,0.16)),
               rgba(241, 244, 248, 0.6);
             background-size: 300% 300%, 100% 100%;
             background-blend-mode: normal;
@@ -176,7 +176,7 @@ export default function Hero() {
 
           .dark .hologram-card {
             background:
-              linear-gradient(135deg, rgba(20,184,166,0.18), rgba(20,184,166,0.09) 40%, rgba(245,196,81,0.16) 70%, rgba(20,184,166,0.18)),
+              linear-gradient(135deg, rgba(20,184,166,0.18), rgba(20,184,166,0.08) 40%, rgba(45,212,191,0.18) 70%, rgba(20,184,166,0.18)),
               rgba(10, 14, 26, 0.55);
           }
 
@@ -193,7 +193,7 @@ export default function Hero() {
             background: linear-gradient(115deg,
               rgba(20,184,166,0.95),
               rgba(20,184,166,0.5),
-              rgba(245,196,81,0.85),
+              rgba(45,212,191,0.9),
               rgba(20,184,166,0.5),
               rgba(20,184,166,0.95));
             background-size: 300% 300%;

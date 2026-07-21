@@ -31,7 +31,7 @@ export default function About() {
   return (
     <section id="about" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-0 top-1/4 h-[22rem] w-[22rem] rounded-full bg-accent-orange/10 opacity-70 blur-[110px] dark:opacity-100" />
+        <div className="absolute left-0 top-1/4 h-[22rem] w-[22rem] rounded-full bg-accent-teal/10 opacity-70 blur-[110px] dark:bg-accent-teal/15 dark:opacity-100" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">

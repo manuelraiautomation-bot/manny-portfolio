@@ -22,8 +22,8 @@ export default {
         },
         accent: {
           teal: "#14b8a6",
-          orange: "#f97316",
-          gold: "#f5c451",
+          tealDeep: "#0d9488",
+          tealLight: "#2dd4bf",
         },
       },
       fontFamily: {
@@ -31,7 +31,7 @@ export default {
         body: ["Inter", "sans-serif"],
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(90deg, #14b8a6 0%, #f97316 100%)",
+        "brand-gradient": "linear-gradient(90deg, #0d9488 0%, #2dd4bf 100%)",
       },
       boxShadow: {
         glow: "0 0 40px -10px rgba(20,184,166,0.35)",
