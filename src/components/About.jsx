@@ -31,53 +31,53 @@ export default function About() {
   return (
     <section id="about" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-0 top-1/4 h-[22rem] w-[22rem] rounded-full bg-accent-violet/10 blur-[110px]" />
+        <div className="absolute left-0 top-1/4 h-[22rem] w-[22rem] rounded-full bg-accent-orange/10 opacity-70 blur-[110px] dark:opacity-100" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-16">
           {/* Left: portrait block */}
           <div className="relative mx-auto w-full max-w-sm lg:mx-0">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-base-800 to-base-900 shadow-glow">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-light-border bg-gradient-to-b from-light-surface to-light-surfaceMuted shadow-glow dark:border-white/10 dark:from-base-800 dark:to-base-900">
               <img
                 src={profilePhoto}
                 alt="Manuel Rebutido"
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-base-950/80 p-4 backdrop-blur-sm">
-                <p className="font-display text-sm font-semibold text-white">
+              <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-light-border bg-light-surface/90 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-base-950/80">
+                <p className="font-display text-sm font-semibold text-light-text dark:text-white">
                   Manuel Rebutido
                 </p>
-                <p className="mt-0.5 text-xs text-white/50">
+                <p className="mt-0.5 text-xs text-light-muted dark:text-white/50">
                   AI Tech VA &amp; Automation Specialist
                 </p>
               </div>
             </div>
             {/* Floating stat chip, echoes the hero's orbit cards */}
-            <div className="absolute -right-4 -top-4 flex items-center gap-2 rounded-2xl border border-white/10 bg-base-850/90 px-4 py-3 shadow-lg backdrop-blur-sm lg:-right-8">
-              <Workflow size={18} className="text-accent-blue" />
+            <div className="absolute -right-4 -top-4 flex items-center gap-2 rounded-2xl border border-light-border bg-light-surface px-4 py-3 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-base-850/90 lg:-right-8">
+              <Workflow size={18} className="text-accent-teal" />
               <div>
-                <p className="text-sm font-semibold text-white">40+</p>
-                <p className="text-[11px] text-white/50">workflows shipped</p>
+                <p className="text-sm font-semibold text-light-text dark:text-white">40+</p>
+                <p className="text-[11px] text-light-muted dark:text-white/50">workflows shipped</p>
               </div>
             </div>
           </div>
 
           {/* Right: copy */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80">
-              <Sparkles size={14} className="text-accent-blue" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-4 py-1.5 text-xs font-medium tracking-wide text-light-muted shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:shadow-none">
+              <Sparkles size={14} className="text-accent-teal" />
               ABOUT ME
             </div>
 
-            <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight lg:text-5xl">
+            <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
               I turn manual busywork into{" "}
               <span className="bg-brand-gradient bg-clip-text text-transparent">
                 systems that run themselves
               </span>
             </h2>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-light-muted dark:text-white/60">
               I&rsquo;m Manuel — an AI Tech VA and automation specialist who
               spent years inside real business operations before moving into
               automation. That background means I don&rsquo;t just connect
@@ -90,9 +90,9 @@ export default function About() {
                 <li key={item} className="flex items-start gap-3">
                   <CheckCircle2
                     size={18}
-                    className="mt-0.5 shrink-0 text-accent-cyan"
+                    className="mt-0.5 shrink-0 text-accent-teal"
                   />
-                  <span className="text-sm leading-relaxed text-white/70">
+                  <span className="text-sm leading-relaxed text-light-muted dark:text-white/70">
                     {item}
                   </span>
                 </li>
@@ -103,7 +103,7 @@ export default function About() {
               {SKILL_TAGS.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/70"
+                  className="rounded-full border border-light-border bg-light-surface px-3.5 py-1.5 text-xs font-medium text-light-muted dark:border-white/10 dark:bg-white/5 dark:text-white/70"
                 >
                   {tag}
                 </span>
@@ -112,7 +112,7 @@ export default function About() {
 
             <a
               href="#contact"
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold shadow-glow transition-transform hover:scale-[1.03]"
+              className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03]"
             >
               Let&rsquo;s Build Something
               <ArrowRight size={16} />

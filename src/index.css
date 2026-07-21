@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-base-950 text-white font-body antialiased;
+    @apply bg-light-bg text-light-text font-body antialiased transition-colors duration-300 dark:bg-base-950 dark:text-white;
   }
   h1, h2, h3, h4 {
     @apply font-display;

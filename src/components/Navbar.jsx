@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import mbrLogo from "../assets/mbr-logo.jpg";
+import { useTheme } from "../context/ThemeContext.jsx";
 
 const LINKS = [
   "Home",
@@ -13,20 +15,21 @@ const LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-base-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-light-border bg-light-bg/85 backdrop-blur-md transition-colors duration-300 dark:border-white/5 dark:bg-base-950/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient font-display text-lg font-bold shadow-glow">
-            M
+          <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-black shadow-glow">
+            <img src={mbrLogo} alt="MBR logo" className="h-full w-full object-cover" />
           </div>
           <div className="leading-tight">
-            <p className="font-display text-sm font-semibold text-white">
+            <p className="font-display text-sm font-semibold text-light-text dark:text-white">
               Manuel Rebutido
             </p>
-            <p className="text-xs text-white/50">
+            <p className="text-xs text-light-muted dark:text-white/50">
               AI Tech VA &amp; Automation Specialist
             </p>
           </div>
@@ -38,10 +41,10 @@ export default function Navbar() {
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className={`text-sm transition-colors hover:text-white ${
+              className={`text-sm transition-colors ${
                 i === 0
-                  ? "relative text-white after:absolute after:-bottom-4 after:left-0 after:h-0.5 after:w-full after:bg-brand-gradient"
-                  : "text-white/60"
+                  ? "relative text-light-text after:absolute after:-bottom-4 after:left-0 after:h-0.5 after:w-full after:bg-brand-gradient dark:text-white"
+                  : "text-light-muted hover:text-light-text dark:text-white/60 dark:hover:text-white"
               }`}
             >
               {link}
@@ -49,34 +52,52 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden items-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium shadow-glow transition-transform hover:scale-[1.03] lg:inline-flex"
-        >
-          Let&rsquo;s Work Together
-          <ArrowUpRight size={16} />
-        </a>
+        {/* CTA + theme toggle */}
+        <div className="hidden items-center gap-3 lg:flex">
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-light-border text-light-muted transition-colors hover:border-light-text/30 hover:text-light-text dark:border-white/15 dark:text-white/70 dark:hover:border-white/30 dark:hover:text-white"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03]"
+          >
+            Let&rsquo;s Work Together
+            <ArrowUpRight size={16} />
+          </a>
+        </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="text-white lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile controls */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-light-border text-light-muted dark:border-white/15 dark:text-white/70"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            className="text-light-text dark:text-white"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-white/5 px-6 pb-6 lg:hidden">
+        <div className="border-t border-light-border px-6 pb-6 dark:border-white/5 lg:hidden">
           <nav className="flex flex-col gap-4 pt-4">
             {LINKS.map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-sm text-white/70 hover:text-white"
+                className="text-sm text-light-muted hover:text-light-text dark:text-white/70 dark:hover:text-white"
                 onClick={() => setOpen(false)}
               >
                 {link}
@@ -84,7 +105,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium"
+              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium text-white"
               onClick={() => setOpen(false)}
             >
               Let&rsquo;s Work Together

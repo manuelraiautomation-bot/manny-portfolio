@@ -1,4 +1,5 @@
 import { ArrowUp, Linkedin, Briefcase, Globe } from "lucide-react";
+import mbrLogo from "../assets/mbr-logo.jpg";
 
 const LINKS = ["Home", "About", "Services", "Portfolio", "Testimonials", "Contact"];
 
@@ -22,25 +23,25 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer id="footer" className="border-t border-white/5">
+    <footer id="footer" className="border-t border-light-border dark:border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
             <a href="#home" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient font-display text-lg font-bold shadow-glow">
-                M
+              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-black shadow-glow">
+                <img src={mbrLogo} alt="MBR logo" className="h-full w-full object-cover" />
               </div>
               <div className="leading-tight">
-                <p className="font-display text-sm font-semibold text-white">
+                <p className="font-display text-sm font-semibold text-light-text dark:text-white">
                   Manuel Rebutido
                 </p>
-                <p className="text-xs text-white/50">
+                <p className="text-xs text-light-muted dark:text-white/50">
                   AI Tech VA &amp; Automation Specialist
                 </p>
               </div>
             </a>
-            <p className="mt-4 text-sm leading-relaxed text-white/45">
+            <p className="mt-4 text-sm leading-relaxed text-light-muted/90 dark:text-white/45">
               Helping businesses save time and scale with AI automation,
               smart systems, and seamless integrations.
             </p>
@@ -52,7 +53,7 @@ export default function Footer() {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-sm text-white/60 transition-colors hover:text-white"
+                className="text-sm text-light-muted transition-colors hover:text-light-text dark:text-white/60 dark:hover:text-white"
               >
                 {link}
               </a>
@@ -68,7 +69,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-white/25 hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-light-border bg-light-surface text-light-muted transition-colors hover:border-light-text/30 hover:text-light-text dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:border-white/25 dark:hover:text-white"
               >
                 <Icon size={17} />
               </a>
@@ -83,7 +84,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/5 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-light-border pt-6 text-xs text-light-muted/80 dark:border-white/5 dark:text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Manuel Rebutido. All rights reserved.</p>
           <p>Built with React, Vite &amp; Tailwind CSS.</p>
         </div>

@@ -52,20 +52,20 @@ export default function Hero() {
     <section id="home" className="relative overflow-hidden">
       {/* Ambient background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-10rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-accent-blue/20 blur-[120px]" />
-        <div className="absolute right-0 top-1/3 h-[24rem] w-[24rem] rounded-full bg-accent-violet/20 blur-[110px]" />
+        <div className="absolute left-1/2 top-[-10rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-accent-teal/10 opacity-70 blur-[120px] dark:bg-accent-teal/20 dark:opacity-100" />
+        <div className="absolute right-0 top-1/3 h-[24rem] w-[24rem] rounded-full bg-accent-orange/10 opacity-70 blur-[110px] dark:bg-accent-orange/20 dark:opacity-100" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 pb-16 pt-14 lg:px-10 lg:pt-20">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
           {/* Left: copy */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80">
-              <Sparkles size={14} className="text-accent-blue" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-4 py-1.5 text-xs font-medium tracking-wide text-light-muted shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:shadow-none">
+              <Sparkles size={14} className="text-accent-teal" />
               AI-POWERED SOLUTIONS THAT DRIVE RESULTS
             </div>
 
-            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight lg:text-6xl">
+            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-light-text dark:text-white lg:text-6xl">
               I Automate.
               <br />
               You{" "}
@@ -74,7 +74,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-white/60">
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-light-muted dark:text-white/60">
               I help businesses save time, reduce costs, and scale faster with
               AI automation, smart systems, and seamless integrations.
             </p>
@@ -82,14 +82,14 @@ export default function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#portfolio"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold shadow-glow transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03]"
               >
                 View My Work
                 <ArrowRight size={16} />
               </a>
               <a
                 href="#"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/30 hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-6 py-3 text-sm font-semibold text-light-text transition-colors hover:border-light-text/30 dark:border-white/15 dark:bg-transparent dark:text-white/90 dark:hover:border-white/30 dark:hover:bg-white/5"
               >
                 Download CV
                 <Download size={16} />
@@ -97,14 +97,14 @@ export default function Hero() {
             </div>
 
             <div className="mt-12">
-              <p className="text-xs uppercase tracking-wide text-white/40">
+              <p className="text-xs uppercase tracking-wide text-light-muted/80 dark:text-white/40">
                 Trusted by tools I work with
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-3">
                 {TOOLS.map((tool) => (
                   <span
                     key={tool}
-                    className="text-sm font-medium text-white/50 transition-colors hover:text-white/80"
+                    className="text-sm font-medium text-light-muted transition-colors hover:text-light-text dark:text-white/50 dark:hover:text-white/80"
                   >
                     {tool}
                   </span>
@@ -120,11 +120,11 @@ export default function Hero() {
               <img
                 src={robotCharacter}
                 alt="AI assistant character"
-                className="h-full w-full object-contain drop-shadow-[0_0_40px_rgba(56,132,255,0.35)]"
+                className="h-full w-full object-contain drop-shadow-[0_0_40px_rgba(20,184,166,0.35)]"
               />
             </div>
             {/* Glow ring beneath character */}
-            <div className="absolute bottom-6 left-1/2 h-6 w-40 -translate-x-1/2 rounded-full bg-accent-blue/40 blur-2xl" />
+            <div className="absolute bottom-6 left-1/2 h-6 w-40 -translate-x-1/2 rounded-full bg-accent-teal/30 blur-2xl dark:bg-accent-teal/40" />
 
             {ORBIT_CARDS.map(({ label, icon: Icon, className }, i) => (
               <div
@@ -135,7 +135,7 @@ export default function Hero() {
                 className={`absolute ${className}`}
               >
                 <div
-                  className="hologram-card group relative flex w-28 flex-col items-center gap-2 overflow-hidden rounded-2xl px-3 py-4 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+                  className="hologram-card group relative flex w-28 flex-col items-center gap-2 overflow-hidden rounded-2xl border border-light-border px-3 py-4 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 dark:border-white/10"
                   style={{ animationDelay: `${i * 0.6}s` }}
                 >
                   {/* Holographic gradient border */}
@@ -149,7 +149,7 @@ export default function Hero() {
                     size={20}
                     className="hologram-icon relative z-10 transition-transform duration-300 group-hover:scale-110"
                   />
-                  <span className="relative z-10 text-[11px] font-medium leading-tight text-white/85 transition-colors duration-300 group-hover:text-white">
+                  <span className="relative z-10 text-[11px] font-medium leading-tight text-light-text transition-colors duration-300 dark:text-white/85 dark:group-hover:text-white">
                     {label}
                   </span>
                 </div>
@@ -164,19 +164,24 @@ export default function Hero() {
             50% { transform: translateY(-10px); }
           }
 
-          /* --- Hologram card effect --- */
+          /* --- Hologram card effect (teal / orange / gold brand palette) --- */
           .hologram-card {
             background:
-              linear-gradient(135deg, rgba(56,132,255,0.16), rgba(168,85,247,0.16) 35%, rgba(236,72,153,0.14) 60%, rgba(45,212,191,0.16) 85%, rgba(56,132,255,0.16)),
-              rgba(10, 14, 26, 0.55);
+              linear-gradient(135deg, rgba(20,184,166,0.14), rgba(249,115,22,0.14) 35%, rgba(245,196,81,0.12) 60%, rgba(20,184,166,0.16) 85%, rgba(249,115,22,0.14)),
+              rgba(241, 244, 248, 0.6);
             background-size: 300% 300%, 100% 100%;
             background-blend-mode: normal;
-            border: 1px solid rgba(255,255,255,0.12);
             animation: hologram-shift 7s ease-in-out infinite;
           }
 
+          .dark .hologram-card {
+            background:
+              linear-gradient(135deg, rgba(20,184,166,0.16), rgba(249,115,22,0.16) 35%, rgba(245,196,81,0.14) 60%, rgba(20,184,166,0.18) 85%, rgba(249,115,22,0.16)),
+              rgba(10, 14, 26, 0.55);
+          }
+
           .hologram-card:hover {
-            border-color: rgba(255,255,255,0.22);
+            border-color: rgba(20,184,166,0.35);
           }
 
           /* Animated iridescent border ring */
@@ -186,11 +191,11 @@ export default function Hero() {
             border-radius: inherit;
             padding: 1px;
             background: linear-gradient(115deg,
-              rgba(56,132,255,0.95),
-              rgba(168,85,247,0.9),
-              rgba(236,72,153,0.85),
-              rgba(45,212,191,0.9),
-              rgba(56,132,255,0.95));
+              rgba(20,184,166,0.95),
+              rgba(249,115,22,0.9),
+              rgba(245,196,81,0.85),
+              rgba(20,184,166,0.9),
+              rgba(249,115,22,0.95));
             background-size: 300% 300%;
             animation: hologram-shift 5s ease-in-out infinite;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -243,8 +248,8 @@ export default function Hero() {
           }
 
           .hologram-icon {
-            color: #7fd8ff;
-            filter: drop-shadow(0 0 6px rgba(56,132,255,0.65));
+            color: #14b8a6;
+            filter: drop-shadow(0 0 6px rgba(20,184,166,0.65));
             animation: hologram-hue 6s linear infinite;
           }
 
@@ -260,9 +265,9 @@ export default function Hero() {
           }
 
           @keyframes hologram-hue {
-            0% { filter: drop-shadow(0 0 6px rgba(56,132,255,0.65)) hue-rotate(0deg); }
-            50% { filter: drop-shadow(0 0 8px rgba(236,72,153,0.6)) hue-rotate(150deg); }
-            100% { filter: drop-shadow(0 0 6px rgba(56,132,255,0.65)) hue-rotate(360deg); }
+            0% { filter: drop-shadow(0 0 6px rgba(20,184,166,0.65)) hue-rotate(0deg); }
+            50% { filter: drop-shadow(0 0 8px rgba(249,115,22,0.6)) hue-rotate(60deg); }
+            100% { filter: drop-shadow(0 0 6px rgba(20,184,166,0.65)) hue-rotate(360deg); }
           }
 
           @media (prefers-reduced-motion: reduce) {
@@ -276,26 +281,26 @@ export default function Hero() {
         `}</style>
 
         {/* Intro strip */}
-        <div className="mt-16 rounded-3xl border border-white/10 bg-base-900/60 p-6 lg:p-8">
+        <div className="mt-16 rounded-3xl border border-light-border bg-light-surface p-6 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none lg:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-8">
             <div className="flex items-start gap-4 lg:w-96 lg:shrink-0">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-base-700 to-base-900 ring-1 ring-white/10">
-                <span className="font-display text-lg font-bold text-white/40">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-light-surface to-light-surfaceMuted ring-1 ring-light-border dark:from-base-700 dark:to-base-900 dark:ring-white/10">
+                <span className="font-display text-lg font-bold text-light-text/30 dark:text-white/40">
                   M
                 </span>
               </div>
               <div>
-                <p className="font-display text-base font-semibold">
+                <p className="font-display text-base font-semibold text-light-text dark:text-white">
                   Hi, I&rsquo;m Manuel! 👋
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-white/50">
+                <p className="mt-1 text-sm leading-relaxed text-light-muted dark:text-white/50">
                   An AI Tech VA &amp; Automation Specialist passionate about
                   building intelligent systems that streamline workflows and
                   empower businesses to focus on what truly matters.
                 </p>
                 <a
                   href="#about"
-                  className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-1.5 text-xs font-medium text-white/80 hover:bg-white/5"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-light-border px-4 py-1.5 text-xs font-medium text-light-text hover:bg-light-surfaceMuted dark:border-white/15 dark:text-white/80 dark:hover:bg-white/5"
                 >
                   More About Me
                   <ArrowRight size={12} />
@@ -307,13 +312,13 @@ export default function Hero() {
               {INTRO_CHIPS.map(({ icon: Icon, title, desc }) => (
                 <div
                   key={title}
-                  className="rounded-2xl border border-white/10 bg-base-850/60 p-4"
+                  className="rounded-2xl border border-light-border bg-light-surfaceMuted p-4 dark:border-white/10 dark:bg-base-850/60"
                 >
-                  <Icon size={18} className="text-accent-violet" />
-                  <p className="mt-3 text-sm font-semibold text-white">
+                  <Icon size={18} className="text-accent-orange" />
+                  <p className="mt-3 text-sm font-semibold text-light-text dark:text-white">
                     {title}
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed text-white/45">
+                  <p className="mt-1 text-xs leading-relaxed text-light-muted dark:text-white/45">
                     {desc}
                   </p>
                 </div>

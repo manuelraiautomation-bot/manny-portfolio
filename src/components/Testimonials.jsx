@@ -25,11 +25,11 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-2xl text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80">
-          <Sparkles size={14} className="text-accent-blue" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-4 py-1.5 text-xs font-medium tracking-wide text-light-muted shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:shadow-none">
+          <Sparkles size={14} className="text-accent-teal" />
           CLIENT WORDS
         </div>
-        <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight lg:text-5xl">
+        <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
           Trusted by teams who{" "}
           <span className="bg-brand-gradient bg-clip-text text-transparent">
             hate busywork
@@ -42,26 +42,26 @@ export default function Testimonials() {
         {TESTIMONIALS.map(({ quote, name, role }) => (
           <div
             key={name}
-            className="flex flex-col rounded-3xl border border-white/10 bg-base-900/60 p-7"
+            className="flex flex-col rounded-3xl border border-light-border bg-light-surface p-7 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none"
           >
-            <Quote size={22} className="text-accent-violet" />
-            <p className="mt-5 flex-1 text-sm leading-relaxed text-white/70">
+            <Quote size={22} className="text-accent-orange" />
+            <p className="mt-5 flex-1 text-sm leading-relaxed text-light-muted dark:text-white/70">
               &ldquo;{quote}&rdquo;
             </p>
-            <div className="mt-6 flex items-center gap-1 text-accent-cyan">
+            <div className="mt-6 flex items-center gap-1 text-accent-teal">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
               ))}
             </div>
-            <div className="mt-4 flex items-center gap-3 border-t border-white/10 pt-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-base-700 to-base-900 ring-1 ring-white/10">
-                <span className="font-display text-sm font-bold text-white/40">
+            <div className="mt-4 flex items-center gap-3 border-t border-light-border pt-4 dark:border-white/10">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-b from-light-surface to-light-surfaceMuted ring-1 ring-light-border dark:from-base-700 dark:to-base-900 dark:ring-white/10">
+                <span className="font-display text-sm font-bold text-light-text/40 dark:text-white/40">
                   {name.charAt(0)}
                 </span>
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">{name}</p>
-                <p className="text-xs text-white/45">{role}</p>
+                <p className="text-sm font-semibold text-light-text dark:text-white">{name}</p>
+                <p className="text-xs text-light-muted dark:text-white/45">{role}</p>
               </div>
             </div>
           </div>

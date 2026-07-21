@@ -27,24 +27,24 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute right-0 top-0 h-[24rem] w-[24rem] rounded-full bg-accent-cyan/10 blur-[120px]" />
+        <div className="absolute right-0 top-0 h-[24rem] w-[24rem] rounded-full bg-accent-teal/10 opacity-70 blur-[120px] dark:opacity-100" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80">
-              <Sparkles size={14} className="text-accent-blue" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-4 py-1.5 text-xs font-medium tracking-wide text-light-muted shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:shadow-none">
+              <Sparkles size={14} className="text-accent-teal" />
               SELECTED WORK
             </div>
-            <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight lg:text-5xl">
+            <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
               Real systems, built and{" "}
               <span className="bg-brand-gradient bg-clip-text text-transparent">
                 shipped
               </span>
             </h2>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed text-white/55">
+          <p className="max-w-sm text-sm leading-relaxed text-light-muted dark:text-white/55">
             A few of the automations I&rsquo;ve designed, built, and
             documented from scratch — each solving a specific operational
             bottleneck.
@@ -55,29 +55,29 @@ export default function Portfolio() {
           {PROJECTS.map(({ title, desc, tags }) => (
             <div
               key={title}
-              className="group flex flex-col justify-between rounded-3xl border border-white/10 bg-base-900/60 p-7 transition-colors hover:border-white/20 hover:bg-base-850/80"
+              className="group flex flex-col justify-between rounded-3xl border border-light-border bg-light-surface p-7 shadow-sm transition-colors hover:border-light-text/20 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none dark:hover:border-white/20 dark:hover:bg-base-850/80"
             >
               <div>
                 <div className="flex flex-wrap gap-2">
                   {tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-white/60"
+                      className="rounded-full border border-light-border bg-light-surfaceMuted px-3 py-1 text-[11px] font-medium text-light-muted dark:border-white/10 dark:bg-white/5 dark:text-white/60"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-white">
+                <h3 className="mt-5 font-display text-xl font-semibold text-light-text dark:text-white">
                   {title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/55">
+                <p className="mt-3 text-sm leading-relaxed text-light-muted dark:text-white/55">
                   {desc}
                 </p>
               </div>
               <a
                 href="#contact"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-white/80 transition-colors group-hover:text-white"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-light-text/80 transition-colors group-hover:text-light-text dark:text-white/80 dark:group-hover:text-white"
               >
                 View case study
                 <ArrowUpRight
