@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
 import mbrLogo from "../assets/mbr-logo.jpg";
 import { useTheme } from "../context/ThemeContext.jsx";
@@ -8,14 +8,36 @@ const LINKS = [
   "About",
   "Services",
   "Portfolio",
-  "Skills",
+  "Stats",
   "Testimonials",
   "Contact",
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState("home");
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    const sectionIds = LINKS.map((link) => link.toLowerCase());
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-light-border bg-light-bg/85 backdrop-blur-md transition-colors duration-300 dark:border-white/5 dark:bg-base-950/80">
@@ -37,19 +59,23 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 lg:flex">
-          {LINKS.map((link, i) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className={`text-sm transition-colors ${
-                i === 0
-                  ? "relative text-light-text after:absolute after:-bottom-4 after:left-0 after:h-0.5 after:w-full after:bg-brand-gradient dark:text-white"
-                  : "text-light-muted hover:text-light-text dark:text-white/60 dark:hover:text-white"
-              }`}
-            >
-              {link}
-            </a>
-          ))}
+          {LINKS.map((link) => {
+            const id = link.toLowerCase();
+            const isActive = id === activeId;
+            return (
+              <a
+                key={link}
+                href={`#${id}`}
+                className={`text-sm transition-colors ${
+                  isActive
+                    ? "relative text-light-text after:absolute after:-bottom-4 after:left-0 after:h-0.5 after:w-full after:bg-brand-gradient dark:text-white"
+                    : "text-light-muted hover:text-light-text dark:text-white/60 dark:hover:text-white"
+                }`}
+              >
+                {link}
+              </a>
+            );
+          })}
         </nav>
 
         {/* CTA + theme toggle */}
@@ -93,16 +119,24 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-light-border px-6 pb-6 dark:border-white/5 lg:hidden">
           <nav className="flex flex-col gap-4 pt-4">
-            {LINKS.map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className="text-sm text-light-muted hover:text-light-text dark:text-white/70 dark:hover:text-white"
-                onClick={() => setOpen(false)}
-              >
-                {link}
-              </a>
-            ))}
+            {LINKS.map((link) => {
+              const id = link.toLowerCase();
+              const isActive = id === activeId;
+              return (
+                <a
+                  key={link}
+                  href={`#${id}`}
+                  className={`text-sm transition-colors ${
+                    isActive
+                      ? "font-medium text-light-text dark:text-white"
+                      : "text-light-muted hover:text-light-text dark:text-white/70 dark:hover:text-white"
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link}
+                </a>
+              );
+            })}
             <a
               href="#contact"
               className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-medium text-white"
