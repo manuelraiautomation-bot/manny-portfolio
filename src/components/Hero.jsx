@@ -69,8 +69,16 @@ export default function Hero() {
               I Automate.
               <br />
               You{" "}
-              <span className="bg-brand-gradient bg-clip-text text-transparent">
-                Elevate.
+              <span className="relative inline-block">
+                <span className="bg-brand-gradient bg-clip-text text-transparent">
+                  Elevate.
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="elevate-shimmer pointer-events-none absolute inset-0 bg-clip-text text-transparent"
+                >
+                  Elevate.
+                </span>
               </span>
             </h1>
 
@@ -162,6 +170,42 @@ export default function Hero() {
           @keyframes orbit-float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+          }
+
+          /* --- "Elevate." shimmer sweep: a bright glow travels E -> e --- */
+          .elevate-shimmer {
+            background-image: linear-gradient(
+              100deg,
+              transparent 30%,
+              rgba(255, 255, 255, 0.95) 46%,
+              rgba(45, 212, 191, 1) 50%,
+              rgba(255, 255, 255, 0.95) 54%,
+              transparent 70%
+            );
+            background-size: 300% 100%;
+            background-position: 150% 0;
+            animation: elevate-sweep 3.2s ease-in-out infinite;
+            animation-delay: 1s;
+            filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.85));
+            mix-blend-mode: screen;
+          }
+
+          .dark .elevate-shimmer {
+            mix-blend-mode: plus-lighter;
+          }
+
+          @keyframes elevate-sweep {
+            0% { background-position: 150% 0; }
+            35% { background-position: -50% 0; }
+            100% { background-position: -50% 0; }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .elevate-shimmer {
+              animation: none !important;
+              background-position: -50% 0;
+              opacity: 0;
+            }
           }
 
           /* --- Hologram card effect: teal only, elegant not busy --- */
