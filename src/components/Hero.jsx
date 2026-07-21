@@ -69,7 +69,7 @@ export default function Hero() {
               I Automate.
               <br />
               You{" "}
-              <span className="relative inline-block">
+              <span className="elevate-jump relative inline-block">
                 <span className="bg-brand-gradient bg-clip-text text-transparent">
                   Elevate.
                 </span>
@@ -206,6 +206,23 @@ export default function Hero() {
               background-position: -50% 0;
               opacity: 0;
             }
+            .elevate-jump {
+              animation: none !important;
+            }
+          }
+
+          /* --- "Elevate." playful jump/bounce --- */
+          .elevate-jump {
+            animation: elevate-jump 2.2s ease-in-out infinite;
+          }
+
+          @keyframes elevate-jump {
+            0%, 100% { transform: translateY(0); }
+            20% { transform: translateY(-14px); }
+            35% { transform: translateY(0); }
+            45% { transform: translateY(-6px); }
+            55% { transform: translateY(0); }
+            100% { transform: translateY(0); }
           }
 
           /* --- Hologram card effect: teal only, elegant not busy --- */
