@@ -184,8 +184,8 @@ export default function Hero() {
             );
             background-size: 300% 100%;
             background-position: 150% 0;
-            animation: elevate-sweep 3.2s ease-in-out infinite;
-            animation-delay: 1s;
+            animation: elevate-sweep 5s ease-in-out infinite;
+            animation-delay: 0.3s;
             filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.85));
             mix-blend-mode: screen;
           }
