@@ -164,10 +164,10 @@ export default function Hero() {
             50% { transform: translateY(-10px); }
           }
 
-          /* --- Hologram card effect (teal / orange / gold brand palette) --- */
+          /* --- Hologram card effect: teal-led, gold accent, elegant not busy --- */
           .hologram-card {
             background:
-              linear-gradient(135deg, rgba(20,184,166,0.14), rgba(249,115,22,0.14) 35%, rgba(245,196,81,0.12) 60%, rgba(20,184,166,0.16) 85%, rgba(249,115,22,0.14)),
+              linear-gradient(135deg, rgba(20,184,166,0.16), rgba(20,184,166,0.08) 40%, rgba(245,196,81,0.14) 70%, rgba(20,184,166,0.16)),
               rgba(241, 244, 248, 0.6);
             background-size: 300% 300%, 100% 100%;
             background-blend-mode: normal;
@@ -176,7 +176,7 @@ export default function Hero() {
 
           .dark .hologram-card {
             background:
-              linear-gradient(135deg, rgba(20,184,166,0.16), rgba(249,115,22,0.16) 35%, rgba(245,196,81,0.14) 60%, rgba(20,184,166,0.18) 85%, rgba(249,115,22,0.16)),
+              linear-gradient(135deg, rgba(20,184,166,0.18), rgba(20,184,166,0.09) 40%, rgba(245,196,81,0.16) 70%, rgba(20,184,166,0.18)),
               rgba(10, 14, 26, 0.55);
           }
 
@@ -192,10 +192,10 @@ export default function Hero() {
             padding: 1px;
             background: linear-gradient(115deg,
               rgba(20,184,166,0.95),
-              rgba(249,115,22,0.9),
+              rgba(20,184,166,0.5),
               rgba(245,196,81,0.85),
-              rgba(20,184,166,0.9),
-              rgba(249,115,22,0.95));
+              rgba(20,184,166,0.5),
+              rgba(20,184,166,0.95));
             background-size: 300% 300%;
             animation: hologram-shift 5s ease-in-out infinite;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -266,7 +266,7 @@ export default function Hero() {
 
           @keyframes hologram-hue {
             0% { filter: drop-shadow(0 0 6px rgba(20,184,166,0.65)) hue-rotate(0deg); }
-            50% { filter: drop-shadow(0 0 8px rgba(249,115,22,0.6)) hue-rotate(60deg); }
+            50% { filter: drop-shadow(0 0 8px rgba(20,184,166,0.5)) hue-rotate(25deg); }
             100% { filter: drop-shadow(0 0 6px rgba(20,184,166,0.65)) hue-rotate(360deg); }
           }
 
@@ -314,7 +314,7 @@ export default function Hero() {
                   key={title}
                   className="rounded-2xl border border-light-border bg-light-surfaceMuted p-4 dark:border-white/10 dark:bg-base-850/60"
                 >
-                  <Icon size={18} className="text-accent-orange" />
+                  <Icon size={18} className="text-accent-teal" />
                   <p className="mt-3 text-sm font-semibold text-light-text dark:text-white">
                     {title}
                   </p>

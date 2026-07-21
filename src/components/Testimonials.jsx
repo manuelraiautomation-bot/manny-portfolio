@@ -44,7 +44,7 @@ export default function Testimonials() {
             key={name}
             className="flex flex-col rounded-3xl border border-light-border bg-light-surface p-7 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none"
           >
-            <Quote size={22} className="text-accent-orange" />
+            <Quote size={22} className="text-accent-teal" />
             <p className="mt-5 flex-1 text-sm leading-relaxed text-light-muted dark:text-white/70">
               &ldquo;{quote}&rdquo;
             </p>
