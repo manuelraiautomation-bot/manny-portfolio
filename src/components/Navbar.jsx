@@ -8,7 +8,7 @@ const LINKS = [
   "About",
   "Services",
   "Portfolio",
-  "Stats",
+  "Skills",
   "Testimonials",
   "Contact",
 ];
