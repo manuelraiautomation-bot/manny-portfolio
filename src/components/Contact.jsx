@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import {
   Sparkles,
   Mail,
   MapPin,
   Clock3,
-  Send,
   Linkedin,
   Briefcase,
   Globe,
 } from "lucide-react";
+
+// Your live Calendly event
+const CALENDLY_URL = "https://calendly.com/manuelr-aiautomation/your-automation-assistant";
 
 const CONTACT_INFO = [
   { icon: Mail, label: "Email", value: "manuelr.aiautomation@gmail.com" },
@@ -35,17 +37,17 @@ const SOCIALS = [
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  useEffect(() => {
+    // Load Calendly's widget script once when this section mounts
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
 
-  const handleChange = (e) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSent(true);
-  };
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section id="contact" className="relative overflow-hidden">
@@ -66,8 +68,8 @@ export default function Contact() {
             </span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            Tell me what&rsquo;s eating up your time and I&rsquo;ll get back
-            to you with how I&rsquo;d approach it.
+            Grab a free 30-minute discovery call — pick a time below and
+            answer a few quick questions so I can prep beforehand.
           </p>
         </div>
 
@@ -108,68 +110,14 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-3xl border border-light-border bg-light-surface p-7 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none lg:col-span-3"
-          >
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <div>
-                <label className="text-xs font-medium text-light-muted dark:text-white/60" htmlFor="name">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  className="mt-2 w-full rounded-xl border border-light-border bg-light-surfaceMuted px-4 py-3 text-sm text-light-text placeholder:text-light-muted/60 outline-none transition-colors focus:border-accent-teal/60 dark:border-white/10 dark:bg-base-850/80 dark:text-white dark:placeholder:text-white/30"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-medium text-light-muted dark:text-white/60" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="you@company.com"
-                  className="mt-2 w-full rounded-xl border border-light-border bg-light-surfaceMuted px-4 py-3 text-sm text-light-text placeholder:text-light-muted/60 outline-none transition-colors focus:border-accent-teal/60 dark:border-white/10 dark:bg-base-850/80 dark:text-white dark:placeholder:text-white/30"
-                />
-              </div>
-            </div>
-
-            <div className="mt-5">
-              <label className="text-xs font-medium text-light-muted dark:text-white/60" htmlFor="message">
-                What do you need automated?
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Tell me a bit about your workflow, tools, and where things break down..."
-                className="mt-2 w-full resize-none rounded-xl border border-light-border bg-light-surfaceMuted px-4 py-3 text-sm text-light-text placeholder:text-light-muted/60 outline-none transition-colors focus:border-accent-teal/60 dark:border-white/10 dark:bg-base-850/80 dark:text-white dark:placeholder:text-white/30"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03]"
-            >
-              {sent ? "Message Sent — Thank You!" : "Send Message"}
-              <Send size={16} />
-            </button>
-          </form>
+          {/* Calendly booking widget */}
+          <div className="overflow-hidden rounded-3xl border border-light-border bg-light-surface p-2 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none lg:col-span-3">
+            <div
+              className="calendly-inline-widget"
+              data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=0b1120&text_color=ffffff&primary_color=14b8a6`}
+              style={{ minWidth: "280px", height: "700px" }}
+            />
+          </div>
         </div>
       </div>
     </section>
