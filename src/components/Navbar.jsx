@@ -6,6 +6,7 @@ import { useTheme } from "../context/ThemeContext.jsx";
 const LINKS = [
   "Home",
   "About",
+  "Experience",
   "Services",
   "Portfolio",
   "Skills",
