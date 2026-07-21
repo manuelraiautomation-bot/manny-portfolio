@@ -107,8 +107,27 @@ function useReducedMotion() {
 }
 
 function ProjectCard({ project, onOpen, reducedMotion }) {
+  const cardRef = useRef(null);
   const wrapRef = useRef(null);
   const imgRef = useRef(null);
+  const glowRef = useRef(null);
+
+  function handleCardMouseMove(e) {
+    if (reducedMotion) return;
+    const card = cardRef.current;
+    const glow = glowRef.current;
+    if (!card || !glow) return;
+    const rect = card.getBoundingClientRect();
+    const px = ((e.clientX - rect.left) / rect.width) * 100;
+    const py = ((e.clientY - rect.top) / rect.height) * 100;
+    glow.style.background = `radial-gradient(280px circle at ${px}% ${py}%, rgba(45,212,191,0.16), transparent 70%)`;
+    glow.style.opacity = "1";
+  }
+
+  function handleCardMouseLeave() {
+    const glow = glowRef.current;
+    if (glow) glow.style.opacity = "0";
+  }
 
   function handleMouseMove(e) {
     if (reducedMotion) return;
@@ -130,10 +149,18 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
 
   return (
     <button
+      ref={cardRef}
       type="button"
       onClick={() => onOpen(project)}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-light-border bg-light-surface text-left shadow-sm transition-colors hover:border-light-text/20 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none dark:hover:border-white/20"
+      onMouseMove={handleCardMouseMove}
+      onMouseLeave={handleCardMouseLeave}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-light-border bg-light-surface text-left shadow-sm transition-colors hover:border-accent-teal/40 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none"
     >
+      <div
+        ref={glowRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300"
+      />
       <div
         ref={wrapRef}
         onMouseMove={handleMouseMove}
