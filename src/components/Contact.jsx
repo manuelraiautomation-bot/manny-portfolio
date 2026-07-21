@@ -110,11 +110,14 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Calendly booking widget */}
-          <div className="overflow-hidden rounded-3xl border border-light-border bg-light-surface p-2 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none lg:col-span-3">
+          {/* Calendly booking widget — rendered in its native light theme
+              inside a white card, since Calendly's internal form elements
+              (dropdowns, checkboxes) aren't designed to work on a dark
+              background and break visually if forced dark. */}
+          <div className="overflow-hidden rounded-3xl border border-light-border bg-white p-2 shadow-sm dark:border-white/10 lg:col-span-3">
             <div
               className="calendly-inline-widget"
-              data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=0b1120&text_color=ffffff&primary_color=14b8a6`}
+              data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=1a1a1a&primary_color=14b8a6`}
               style={{ minWidth: "280px", height: "700px" }}
             />
           </div>
