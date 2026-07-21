@@ -7,6 +7,7 @@ import {
   Linkedin,
   Briefcase,
   Globe,
+  MessageCircle,
 } from "lucide-react";
 
 // Your live Calendly event
@@ -19,6 +20,11 @@ const CONTACT_INFO = [
 ];
 
 const SOCIALS = [
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    href: "https://wa.me/639624027815",
+  },
   {
     icon: Linkedin,
     label: "LinkedIn",

@@ -96,7 +96,8 @@ export default function Hero() {
                 <ArrowRight size={16} />
               </a>
               <a
-                href="#"
+                href="/Manuel_Rebutido_Resume.pdf"
+                download
                 className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-6 py-3 text-sm font-semibold text-light-text transition-colors hover:border-light-text/30 dark:border-white/15 dark:bg-transparent dark:text-white/90 dark:hover:border-white/30 dark:hover:bg-white/5"
               >
                 Download CV
