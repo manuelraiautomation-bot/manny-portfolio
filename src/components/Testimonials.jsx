@@ -3,21 +3,21 @@ import { Sparkles, Quote, Star } from "lucide-react";
 const TESTIMONIALS = [
   {
     quote:
-      "Manny mapped our entire client check-in process and automated it in about a week. What used to eat two hours a day now runs on its own.",
-    name: "Sarah Whitfield",
+      "Manuel mapped our entire client check-in process and automated it in about a week. What used to eat two hours a day now runs on its own.",
+    name: "Ellaine E.",
     role: "Founder, Online Coaching Studio",
   },
   {
     quote:
       "He doesn't just build the automation — he explains exactly how it works and why. That made handing off ownership of the system painless.",
-    name: "Daniel Ortiz",
-    role: "Operations Lead, D2C Brand",
+    name: "Ian B.",
+    role: "CEO, Social Media Influencer",
   },
   {
     quote:
       "Our lead response time dropped from hours to minutes after Manny put the routing workflow in place. Genuinely changed how the team works.",
-    name: "Priya Nair",
-    role: "Growth Manager, SaaS Startup",
+    name: "Alex E.",
+    role: "Ecomm, Amazon Seller",
   },
 ];
 
