@@ -73,54 +73,53 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-5">
-          {/* Info panel */}
-          <div className="flex flex-col justify-between rounded-3xl border border-light-border bg-light-surface p-7 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none lg:col-span-2">
-            <div className="space-y-6">
-              {CONTACT_INFO.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-light-border bg-light-surfaceMuted dark:border-white/10 dark:bg-white/5">
-                    <Icon size={17} className="text-accent-teal" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-wide text-light-muted/80 dark:text-white/40">
-                      {label}
-                    </p>
-                    <p className="mt-0.5 text-sm font-medium text-light-text dark:text-white/85">
-                      {value}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex gap-3 border-t border-light-border pt-6 dark:border-white/10">
-              {SOCIALS.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-light-border bg-light-surfaceMuted text-light-muted transition-colors hover:border-light-text/30 hover:text-light-text dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:border-white/25 dark:hover:text-white"
-                >
-                  <Icon size={17} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Calendly booking widget — rendered in its native light theme
-              inside a white card, since Calendly's internal form elements
-              (dropdowns, checkboxes) aren't designed to work on a dark
-              background and break visually if forced dark. */}
-          <div className="overflow-hidden rounded-3xl border border-light-border bg-white p-2 shadow-sm dark:border-white/10 lg:col-span-3">
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {CONTACT_INFO.map(({ icon: Icon, label, value }) => (
             <div
-              className="calendly-inline-widget"
-              data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=1a1a1a&primary_color=14b8a6`}
-              style={{ minWidth: "280px", height: "700px" }}
-            />
-          </div>
+              key={label}
+              className="flex items-start gap-3 rounded-3xl border border-light-border bg-light-surface p-6 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-light-border bg-light-surfaceMuted dark:border-white/10 dark:bg-white/5">
+                <Icon size={17} className="text-accent-teal" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-wide text-light-muted/80 dark:text-white/40">
+                  {label}
+                </p>
+                <p className="mt-0.5 text-sm font-medium text-light-text dark:text-white/85">
+                  {value}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Socials row */}
+        <div className="mt-6 flex justify-center gap-3">
+          {SOCIALS.map(({ icon: Icon, label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-light-border bg-light-surfaceMuted text-light-muted transition-colors hover:border-light-text/30 hover:text-light-text dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:border-white/25 dark:hover:text-white"
+            >
+              <Icon size={17} />
+            </a>
+          ))}
+        </div>
+
+        {/* Calendly booking widget — rendered in its native light theme
+            inside a white card, since Calendly's internal form elements
+            (dropdowns, checkboxes) aren't designed to work on a dark
+            background and break visually if forced dark. */}
+        <div className="mt-10 overflow-hidden rounded-3xl border border-light-border bg-white p-2 shadow-sm dark:border-white/10">
+          <div
+            className="calendly-inline-widget"
+            data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=1a1a1a&primary_color=14b8a6`}
+            style={{ minWidth: "280px", height: "700px" }}
+          />
         </div>
       </div>
     </section>
