@@ -83,7 +83,7 @@ const PROJECTS = [
   {
     title: "AI Voice Receptionist & Appointment Booking",
     tags: ["N8N", "VAPI", "VOICE AI"],
-    image: "/images/portfolio/AI Receptionist - Vapi + ElevenLabs Tools.png",
+    image: "/images/portfolio/ai-voice-receptionist.png",
     pain: "Handling appointment requests, rescheduling, and phone messages manually can interrupt a small team's day and leave follow-ups scattered across tools.",
     solution:
       "I built an n8n backend for a Vapi voice receptionist that checks Google Calendar availability, suggests open slots, re-checks availability before booking, and reschedules existing appointments. It also saves messages and call reports to Google Sheets and sends booking, rescheduling, and message alerts through Gmail.",
@@ -93,7 +93,7 @@ const PROJECTS = [
   {
     title: "Property Enquiry & Asana Automation",
     tags: ["N8N", "ASANA", "PROPERTY OPS"],
-    image: "/images/portfolio/Chatgpt+Spareroom+Asana.png",
+    image: "/images/portfolio/property-enquiry-asana.png",
     pain: "Property enquiries, listing details, viewing links, and follow-up tasks can become scattered across spreadsheets, files, and project boards.",
     solution:
       "I built a webhook-driven n8n workflow that creates and updates Asana tasks, logs enquiries in Google Sheets, retrieves files from Google Drive, looks up property viewing links, and finds matching leads. Task creation can also attach advert links, viewing links, and relevant files.",
