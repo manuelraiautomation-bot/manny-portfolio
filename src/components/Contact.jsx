@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import {
   Sparkles,
   Mail,
@@ -43,17 +43,7 @@ const SOCIALS = [
 ];
 
 export default function Contact() {
-  useEffect(() => {
-    // Load Calendly's widget script once when this section mounts
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <section id="contact" className="relative overflow-hidden">
@@ -79,7 +69,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-4 xl:grid-cols-3">
           {CONTACT_INFO.map(({ icon: Icon, label, value }) => (
             <div
               key={label}
@@ -88,12 +78,12 @@ export default function Contact() {
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-light-border bg-light-surfaceMuted dark:border-white/10 dark:bg-white/5">
                 <Icon size={17} className="text-accent-teal" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs uppercase tracking-wide text-light-muted/80 dark:text-white/40">
                   {label}
                 </p>
-                <p className="mt-0.5 text-sm font-medium text-light-text dark:text-white/85">
-                  {value}
+                <p className="mt-0.5 break-words text-sm font-medium text-light-text dark:text-white/85">
+                  {label === "Email" ? <a href={`mailto:${value}`} className="underline decoration-accent-teal/50 underline-offset-4">{value}</a> : value}
                 </p>
               </div>
             </div>
@@ -116,17 +106,24 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Calendly booking widget — rendered in its native light theme
-            inside a white card, since Calendly's internal form elements
-            (dropdowns, checkboxes) aren't designed to work on a dark
-            background and break visually if forced dark. */}
-        <div className="mt-10 overflow-hidden rounded-3xl border border-light-border bg-white p-2 shadow-sm dark:border-white/10">
-          <div
-            className="calendly-inline-widget"
-            data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_landing_page_details=1&background_color=ffffff&text_color=1a1a1a&primary_color=14b8a6`}
-            style={{ minWidth: "280px", height: "700px" }}
-          />
+        <div className="mt-10 overflow-hidden rounded-3xl border border-light-border bg-light-surface shadow-sm dark:border-white/10 dark:bg-base-900">
+          {bookingOpen ? (
+            <iframe
+              title="Book a discovery call with Manuel Rebutido"
+              src={`${CALENDLY_URL}?embed_type=Inline&hide_landing_page_details=1&background_color=ffffff&text_color=1a1a1a&primary_color=0d9488`}
+              className="h-[700px] w-full border-0 bg-white"
+            />
+          ) : (
+            <div className="px-5 py-12 text-center">
+              <h3 className="font-display text-xl font-semibold text-light-text dark:text-white">Find a time that works for you</h3>
+              <p className="mx-auto mt-3 max-w-md text-sm text-light-muted dark:text-white/70">Open the calendar to choose your free 30-minute discovery call.</p>
+              <button type="button" onClick={() => setBookingOpen(true)} className="mt-6 rounded-full bg-accent-tealDeep px-6 py-3 text-sm font-semibold text-white">Show available times</button>
+            </div>
+          )}
         </div>
+        <p className="mt-4 text-center text-sm text-light-muted dark:text-white/70">
+          Prefer a separate tab? <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Book directly on Calendly</a>.
+        </p>
       </div>
     </section>
   );

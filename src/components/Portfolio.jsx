@@ -224,7 +224,19 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
   const dialogRef = useRef(null);
 
   useEffect(() => {
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
     function handleKey(e) {
+      if (e.key === "Tab") {
+        const controls = dialogRef.current?.querySelectorAll('button, a[href], [tabindex="0"]');
+        const first = controls?.[0];
+        const last = controls?.[controls.length - 1];
+        if (e.shiftKey && (document.activeElement === first || document.activeElement === dialogRef.current)) {
+          e.preventDefault(); last?.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || document.activeElement === dialogRef.current)) {
+          e.preventDefault(); first?.focus();
+        }
+      }
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft") onPrev();
       if (e.key === "ArrowRight") onNext();
@@ -234,7 +246,8 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
     dialogRef.current?.focus();
     return () => {
       document.removeEventListener("keydown", handleKey);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus();
     };
   }, [onClose, onPrev, onNext]);
 

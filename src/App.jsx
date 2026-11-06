@@ -13,8 +13,9 @@ import Footer from "./components/Footer.jsx";
 export default function App() {
   return (
     <div className="min-h-screen bg-light-bg transition-colors duration-300 dark:bg-base-950">
+      <a href="#main-content" className="sr-only fixed left-4 top-4 z-[200] rounded-lg bg-light-surface p-3 text-light-text focus:not-sr-only">Skip to content</a>
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <About />
         <Experience />

@@ -4,8 +4,10 @@ const ThemeContext = createContext(null);
 
 function getInitialTheme() {
   if (typeof window === "undefined") return "dark";
-  const stored = window.localStorage.getItem("theme");
-  if (stored === "light" || stored === "dark") return stored;
+  try {
+    const stored = window.localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") return stored;
+  } catch { /* Theme still works when storage is unavailable. */ }
   // Default to dark — this site was designed dark-first.
   return "dark";
 }
@@ -16,7 +18,9 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle("dark", theme === "dark");
-    window.localStorage.setItem("theme", theme);
+    try {
+      window.localStorage.setItem("theme", theme);
+    } catch { /* Storage is optional. */ }
   }, [theme]);
 
   const toggleTheme = () =>

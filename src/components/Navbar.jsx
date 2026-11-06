@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
 import mbrLogo from "../assets/mbr-logo.jpg";
 import { useTheme } from "../context/ThemeContext.jsx";
@@ -15,6 +15,7 @@ const LINKS = [
 ];
 
 export default function Navbar() {
+  const menuButtonRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const { theme, toggleTheme } = useTheme();
@@ -40,26 +41,44 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    const wideScreen = window.matchMedia("(min-width: 1280px)");
+    const closeOnResize = () => { if (wideScreen.matches) setOpen(false); };
+    document.addEventListener("keydown", closeOnEscape);
+    wideScreen.addEventListener("change", closeOnResize);
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      wideScreen.removeEventListener("change", closeOnResize);
+    };
+  }, [open]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-light-border bg-light-bg/85 backdrop-blur-md transition-colors duration-300 dark:border-white/5 dark:bg-base-950/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-black shadow-glow">
+        <a href="#home" className="flex min-w-0 items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black shadow-glow">
             <img src={mbrLogo} alt="MBR logo" className="h-full w-full object-cover" />
           </div>
           <div className="leading-tight">
             <p className="font-display text-sm font-semibold text-light-text dark:text-white">
               Manuel Rebutido
             </p>
-            <p className="text-xs text-light-muted dark:text-white/50">
+            <p className="hidden text-xs text-light-muted dark:text-white/50 sm:block">
               AI Tech VA &amp; Automation Specialist
             </p>
           </div>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-4 xl:flex">
           {LINKS.map((link) => {
             const id = link.toLowerCase();
             const isActive = id === activeId;
@@ -67,20 +86,21 @@ export default function Navbar() {
               <a
                 key={link}
                 href={`#${id}`}
+                aria-current={isActive ? "location" : undefined}
                 className={`text-sm transition-colors ${
                   isActive
                     ? "relative text-light-text after:absolute after:-bottom-4 after:left-0 after:h-0.5 after:w-full after:bg-brand-gradient dark:text-white"
                     : "text-light-muted hover:text-light-text dark:text-white/60 dark:hover:text-white"
                 }`}
               >
-                {link}
+                {link === "Services" ? "Process" : link}
               </a>
             );
           })}
         </nav>
 
         {/* CTA + theme toggle */}
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <button
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
@@ -98,7 +118,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex shrink-0 items-center gap-2 xl:hidden">
           <button
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
@@ -107,7 +127,10 @@ export default function Navbar() {
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <button
-            className="text-light-text dark:text-white"
+            ref={menuButtonRef}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            className="flex h-11 w-11 items-center justify-center text-light-text dark:text-white"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -118,7 +141,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-light-border px-6 pb-6 dark:border-white/5 lg:hidden">
+        <div id="mobile-navigation" className="border-t border-light-border px-6 pb-6 dark:border-white/5 xl:hidden">
           <nav className="flex flex-col gap-4 pt-4">
             {LINKS.map((link) => {
               const id = link.toLowerCase();
@@ -127,6 +150,7 @@ export default function Navbar() {
                 <a
                   key={link}
                   href={`#${id}`}
+                  aria-current={isActive ? "location" : undefined}
                   className={`text-sm transition-colors ${
                     isActive
                       ? "font-medium text-light-text dark:text-white"
@@ -134,7 +158,7 @@ export default function Navbar() {
                   }`}
                   onClick={() => setOpen(false)}
                 >
-                  {link}
+                  {link === "Services" ? "Process" : link}
                 </a>
               );
             })}

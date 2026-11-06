@@ -42,6 +42,8 @@ export default function About() {
               <img
                 src={profilePhoto}
                 alt="Manuel Rebutido"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-light-border bg-light-surface/90 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-base-950/80">

@@ -64,7 +64,7 @@ export default function Footer() {
                 href={`#${link.toLowerCase()}`}
                 className="text-sm text-light-muted transition-colors hover:text-light-text dark:text-white/60 dark:hover:text-white"
               >
-                {link}
+                {link === "Services" ? "Process" : link}
               </a>
             ))}
           </nav>

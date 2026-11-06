@@ -13,3 +13,12 @@
     @apply font-display;
   }
 }
+
+@layer base {
+  section[id] { scroll-margin-top: 6rem; }
+  :focus-visible { outline: 3px solid #0d9488; outline-offset: 4px; }
+  .dark :focus-visible { outline-color: #2dd4bf; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}

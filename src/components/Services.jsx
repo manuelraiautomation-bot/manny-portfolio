@@ -66,7 +66,7 @@ export default function Services() {
           <span className="h-px w-6 bg-accent-teal" />
           HOW IT WORKS
         </div>
-        <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-white lg:text-5xl">
+        <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
           Our 5-Step Process
         </h2>
       </div>
@@ -74,7 +74,7 @@ export default function Services() {
       <div className="servicesScroll mt-16 snap-x snap-mandatory overflow-x-auto pb-4 lg:overflow-visible lg:pb-0">
         <div className="relative flex min-w-max gap-10 px-2 sm:gap-14 lg:min-w-0 lg:justify-between lg:gap-6">
           {/* static connecting line */}
-          <div className="pointer-events-none absolute left-11 right-11 top-9 h-px bg-white/10" />
+          <div className="pointer-events-none absolute left-11 right-11 top-9 h-px bg-light-border dark:bg-white/10" />
 
           {/* traveling pulse, confined to the same track as the line */}
           <div className="pointer-events-none absolute left-11 right-11 top-9 h-px overflow-visible">
@@ -92,10 +92,10 @@ export default function Services() {
                   {i + 1}
                 </span>
               </div>
-              <h3 className="mt-5 font-display text-base font-semibold text-white">
+              <h3 className="mt-5 font-display text-base font-semibold text-light-text dark:text-white">
                 {title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">
+              <p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-white/65">
                 {desc}
               </p>
             </div>
@@ -103,7 +103,7 @@ export default function Services() {
         </div>
       </div>
 
-      <p className="mt-3 text-center text-xs text-white/40 lg:hidden">
+      <p className="mt-3 text-center text-xs text-light-muted dark:text-white/60 lg:hidden">
         Swipe to see all 5 steps →
       </p>
     </section>

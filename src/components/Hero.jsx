@@ -83,8 +83,8 @@ export default function Hero() {
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-light-muted dark:text-white/60">
-              I help businesses save time, reduce costs, and scale faster with
-              AI automation, smart systems, and seamless integrations.
+              I help small businesses save time, reduce costs, and scale faster
+              as an AI automation specialist building smart systems and seamless integrations.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -107,7 +107,7 @@ export default function Hero() {
 
             <div className="mt-12">
               <p className="text-xs uppercase tracking-wide text-light-muted/80 dark:text-white/40">
-                Trusted by tools I work with
+                Tools I work with
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-3">
                 {TOOLS.map((tool) => (
@@ -333,6 +333,7 @@ export default function Hero() {
           }
 
           @media (prefers-reduced-motion: reduce) {
+            #home [style*="orbit-float"],
             .hologram-card,
             .hologram-border,
             .hologram-scan,
