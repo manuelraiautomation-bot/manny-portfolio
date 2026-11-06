@@ -6,11 +6,11 @@ const JOBS = [
     title: "AI Automation Specialist / Tech VA",
     company: "Independent — Global Clients",
     bullets: [
-      "Design and ship production automations across n8n, Make.com, and Zapier for founders and small teams.",
+      "Design and ship production automations across n8n, Make, Zapier, and GHL for founders and small teams.",
       "Build AI agents with memory, RAG, and multi-model fallbacks integrated into Messenger, Telegram, and custom webhooks.",
       "Deliver documented handoffs so clients own and can extend the systems.",
     ],
-    tools: ["n8n", "Make.com", "Zapier", "Claude", "OpenAI"],
+    tools: ["n8n", "Make", "Zapier", "GHL"],
   },
   {
     dates: "2019 — 2025",
