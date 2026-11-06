@@ -7,19 +7,7 @@ import {
   AlertCircle,
   Lightbulb,
   TrendingUp,
-  Sparkles,
 } from "lucide-react";
-
-// Fills out trailing grid slots so the layout doesn't end on a lonely
-// half-empty row. Purely visual — not clickable, not part of PROJECTS.
-const COMING_SOON_COUNT = 2;
-
-/* ---------------------------------------------------------
-   ASSET NOTE:
-   Place your 7 screenshots in /public/images/portfolio/ using
-   the filenames below (rename as needed to match, or edit the
-   `image` paths to match your actual filenames).
---------------------------------------------------------- */
 
 const PROJECTS = [
   {
@@ -91,6 +79,26 @@ const PROJECTS = [
       "I built a fully automated n8n pipeline that generates a video prompt with AI, calls a video generation API, waits for rendering to finish, then uploads the finished video straight to Facebook and YouTube.",
     benefit:
       "A content channel now publishes new short-form video on a schedule, with zero manual editing or uploading.",
+  },
+  {
+    title: "AI Voice Receptionist & Appointment Booking",
+    tags: ["N8N", "VAPI", "VOICE AI"],
+    image: "/images/portfolio/AI Receptionist - Vapi + ElevenLabs Tools.png",
+    pain: "Handling appointment requests, rescheduling, and phone messages manually can interrupt a small team's day and leave follow-ups scattered across tools.",
+    solution:
+      "I built an n8n backend for a Vapi voice receptionist that checks Google Calendar availability, suggests open slots, re-checks availability before booking, and reschedules existing appointments. It also saves messages and call reports to Google Sheets and sends booking, rescheduling, and message alerts through Gmail.",
+    benefit:
+      "Brings scheduling, caller messages, and call records into one connected workflow, with replies for missing booking details, unavailable slots, and bookings that cannot be found.",
+  },
+  {
+    title: "Property Enquiry & Asana Automation",
+    tags: ["N8N", "ASANA", "PROPERTY OPS"],
+    image: "/images/portfolio/Chatgpt+Spareroom+Asana.png",
+    pain: "Property enquiries, listing details, viewing links, and follow-up tasks can become scattered across spreadsheets, files, and project boards.",
+    solution:
+      "I built a webhook-driven n8n workflow that creates and updates Asana tasks, logs enquiries in Google Sheets, retrieves files from Google Drive, looks up property viewing links, and finds matching leads. Task creation can also attach advert links, viewing links, and relevant files.",
+    benefit:
+      "Connects enquiry records, property information, and Asana follow-ups so the team can retrieve details and manage next steps through one automation entry point.",
   },
 ];
 
@@ -199,24 +207,6 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
         </p>
       </div>
     </button>
-  );
-}
-
-function ComingSoonCard() {
-  return (
-    <div
-      aria-hidden="true"
-      className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-light-border bg-light-surface/40 p-5 text-center dark:border-white/10 dark:bg-base-900/25"
-    >
-      <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-light-border/70 dark:border-white/10">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-light-surfaceMuted text-light-muted dark:bg-white/5 dark:text-white/40">
-          <Sparkles size={16} />
-        </div>
-        <span className="text-xs font-semibold uppercase tracking-wide text-light-muted dark:text-white/40">
-          Coming Soon
-        </span>
-      </div>
-    </div>
   );
 }
 
@@ -400,9 +390,7 @@ export default function Portfolio() {
               onOpen={() => setActiveIndex(i)}
             />
           ))}
-          {Array.from({ length: COMING_SOON_COUNT }).map((_, i) => (
-            <ComingSoonCard key={`coming-soon-${i}`} />
-          ))}
+
         </div>
 
         {activeProject && (
