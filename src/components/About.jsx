@@ -7,7 +7,7 @@ import {
   Database,
   MessageSquare,
 } from "lucide-react";
-import { PROJECTS } from "../data/projects.js";
+import { WORKFLOWS_BUILT } from "../data/profile.js";
 import profilePhoto from "../assets/manuel-rebutido.jpg";
 
 const HIGHLIGHTS = [
@@ -60,8 +60,8 @@ export default function About() {
             <div className="absolute -right-4 -top-4 flex items-center gap-2 rounded-2xl border border-light-border bg-light-surface px-4 py-3 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-base-850/90 lg:-right-8">
               <Workflow size={18} className="text-accent-teal" />
               <div>
-                <p className="text-sm font-semibold text-light-text dark:text-white">{PROJECTS.length}</p>
-                <p className="text-[11px] text-light-muted dark:text-white/50">projects in this portfolio</p>
+                <p className="text-sm font-semibold text-light-text dark:text-white">{WORKFLOWS_BUILT}</p>
+                <p className="text-[11px] text-light-muted dark:text-white/50">workflows built</p>
               </div>
             </div>
           </div>
