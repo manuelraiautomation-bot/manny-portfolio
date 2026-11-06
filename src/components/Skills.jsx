@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Sparkles, MessagesSquare, Palette } from "lucide-react";
+import { useState } from "react";
+import { Sparkles, MessagesSquare, Palette, Pause, Play } from "lucide-react";
 import {
   SiN8N,
   SiMake,
@@ -34,99 +34,20 @@ const TOOLS = [
   { name: "Canva", Icon: Palette, color: "#8B3DFF" },
 ];
 
-// Max tilt angle in degrees, and how strong the glow spot is.
-const MAX_TILT = 10;
-
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const handler = (e) => setReduced(e.matches);
-    mq.addEventListener?.("change", handler);
-    return () => mq.removeEventListener?.("change", handler);
-  }, []);
-  return reduced;
-}
-
 function SkillCard({ name, Icon, initials, color, bg }) {
-  const cardRef = useRef(null);
-  const glowRef = useRef(null);
-  const reducedMotion = useReducedMotion();
-
-  function handleMouseMove(e) {
-    if (reducedMotion) return;
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const px = ((e.clientX - rect.left) / rect.width) * 100;
-    const py = ((e.clientY - rect.top) / rect.height) * 100;
-
-    const rotateY = ((px - 50) / 50) * MAX_TILT;
-    const rotateX = ((50 - py) / 50) * MAX_TILT;
-
-    card.style.transition = "transform 0.05s linear";
-    card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-
-    if (glowRef.current) {
-      glowRef.current.style.background = `radial-gradient(circle at ${px}% ${py}%, ${color}33, transparent 65%)`;
-      glowRef.current.style.opacity = "1";
-    }
-  }
-
-  function handleMouseLeave() {
-    const card = cardRef.current;
-    if (!card) return;
-    card.style.transition = "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)";
-    card.style.transform = "perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)";
-    if (glowRef.current) {
-      glowRef.current.style.opacity = "0";
-    }
-  }
-
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="group relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-light-border bg-light-surface p-5 text-center shadow-sm will-change-transform dark:border-white/10 dark:bg-base-900/60 dark:shadow-none dark:hover:border-white/20"
-      style={{ transformStyle: "preserve-3d" }}
-    >
-      {/* cursor-tracking glow */}
-      <div
-        ref={glowRef}
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
-        aria-hidden="true"
-      />
-
-      {/* subtle static ring that appears on hover, reduced-motion friendly */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 ring-1 ring-inset transition-opacity duration-300 group-hover:opacity-100"
-        style={{ boxShadow: `inset 0 0 0 1px ${color}55`, ["--tw-ring-color"]: `${color}55` }}
-        aria-hidden="true"
-      />
-
-      <div
-        className="relative flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-        style={{ backgroundColor: bg ?? `${color}1A`, color, transform: "translateZ(30px)" }}
-      >
-        {initials ? (
-          <span className="text-[11px] font-bold tracking-tight">{initials}</span>
-        ) : (
-          <Icon size={22} />
-        )}
+    <li className="flex w-40 shrink-0 flex-col items-center gap-3 rounded-2xl border border-light-border bg-light-surface p-5 text-center shadow-sm dark:border-white/10 dark:bg-base-900/60">
+      <div aria-hidden="true" className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ backgroundColor: bg ?? `${color}1A`, color }}>
+        {initials ? <span className="text-[11px] font-bold">{initials}</span> : <Icon size={24} />}
       </div>
-      <span
-        className="relative text-xs font-medium leading-tight text-light-muted dark:text-white/70"
-        style={{ transform: "translateZ(20px)" }}
-      >
-        {name}
-      </span>
-    </div>
+      <span className="text-xs font-medium leading-tight text-light-muted dark:text-white/80">{name}</span>
+    </li>
   );
 }
 
 export default function Skills() {
+  const [paused, setPaused] = useState(false);
+
   return (
     <section id="skills" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -151,10 +72,20 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {TOOLS.map((tool) => (
-            <SkillCard key={tool.name} {...tool} />
-          ))}
+        <div className="skills-marquee mt-10 overflow-hidden py-4" data-paused={paused}>
+          <div className="skills-track flex w-max">
+            {[false, true].map((duplicate) => (
+              <ul key={String(duplicate)} aria-label={duplicate ? undefined : "Tools and platforms"} aria-hidden={duplicate || undefined} className={`skills-group flex shrink-0 gap-4 pr-4 ${duplicate ? "skills-duplicate" : ""}`}>
+                {TOOLS.map((tool) => <SkillCard key={tool.name} {...tool} />)}
+              </ul>
+            ))}
+          </div>
+        </div>
+        <div className="skills-motion-control mt-4 flex justify-center">
+          <button type="button" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Play skill animation" : "Pause skill animation"} className="inline-flex items-center gap-2 rounded-full border border-light-border px-4 py-2 text-xs font-medium text-light-muted hover:bg-light-surface dark:border-white/15 dark:text-white/70 dark:hover:bg-white/5">
+            {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
+            {paused ? "Resume scrolling" : "Pause scrolling"}
+          </button>
         </div>
       </div>
     </section>

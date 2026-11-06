@@ -42,7 +42,7 @@ export default function Hero() {
 
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-light-text dark:text-white sm:text-5xl lg:text-6xl">
               AI Agents &amp; Workflow Automation for{" "}
-              <span className="bg-brand-gradient bg-clip-text text-transparent">Small Businesses</span>
+              <span className="hero-businesses inline-block bg-clip-text text-transparent">Small Businesses</span>
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-light-muted dark:text-white/60">
