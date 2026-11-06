@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Search, BookOpen, Settings, Rocket, ShieldCheck } from "lucide-react";
 
 const STEPS = [
@@ -31,8 +32,33 @@ const STEPS = [
 const PULSE_DURATION = "7s";
 
 export default function Services() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !("IntersectionObserver" in window)) return;
+    const steps = section.querySelectorAll(".process-step");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      section.classList.toggle("process-in-view", entry.isIntersecting);
+    });
+    steps.forEach((step) => revealObserver.observe(step));
+    visibilityObserver.observe(section);
+    return () => {
+      revealObserver.disconnect();
+      visibilityObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <section id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+    <section ref={sectionRef} id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
       <style>{`
         @keyframes servicesPulseTravel {
           0% { left: 0%; opacity: 0; }
@@ -43,8 +69,37 @@ export default function Services() {
         .servicesPulseDot {
           animation: servicesPulseTravel ${PULSE_DURATION} ease-in-out infinite;
         }
+        @keyframes processReveal {
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes processIconReveal {
+          from { transform: scale(0.9); }
+          to { transform: scale(1); }
+        }
+        @keyframes processLineTravel {
+          0% { transform: translateY(-110%); opacity: 0; }
+          15%, 75% { opacity: 0.8; }
+          100% { transform: translateY(330%); opacity: 0; }
+        }
+        .process-step.is-revealed .process-content {
+          animation: processReveal 600ms ease-out both;
+        }
+        .process-step.is-revealed .process-icon {
+          animation: processIconReveal 600ms ease-out both;
+        }
+        .process-line-pulse {
+          animation: processLineTravel 3.6s ease-in-out infinite;
+        }
+        #services .servicesPulseDot,
+        #services .process-line-pulse { animation-play-state: paused; }
+        #services.process-in-view .servicesPulseDot,
+        #services.process-in-view .process-line-pulse { animation-play-state: running; }
         @media (prefers-reduced-motion: reduce) {
-          .servicesPulseDot {
+          #services .process-step .process-content,
+          #services .process-step .process-icon { animation: none; }
+          #services .servicesPulseDot,
+          #services .process-line-pulse {
             animation: none;
             opacity: 0;
           }
@@ -69,17 +124,19 @@ export default function Services() {
 
         <ol className="grid gap-0 lg:grid-cols-5 lg:gap-6">
           {STEPS.map(({ icon: Icon, title, desc }, i) => (
-            <li key={title} className="relative flex min-w-0 gap-4 pb-6 last:pb-0 lg:flex-col lg:items-center lg:gap-0 lg:pb-0 lg:text-center">
+            <li key={title} className="process-step relative flex min-w-0 gap-4 pb-6 last:pb-0 lg:flex-col lg:items-center lg:gap-0 lg:pb-0 lg:text-center">
               {i < STEPS.length - 1 && (
-                <span aria-hidden="true" className="absolute bottom-0 left-6 top-12 w-px bg-light-border dark:bg-accent-teal/25 lg:hidden" />
+                <span aria-hidden="true" className="absolute bottom-0 left-6 top-12 w-px overflow-hidden bg-light-border dark:bg-accent-teal/25 lg:hidden">
+                  <span className="process-line-pulse absolute inset-x-0 top-0 h-1/3 bg-accent-teal" />
+                </span>
               )}
-              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-light-border bg-light-surface text-accent-tealDeep shadow-sm dark:border-white/10 dark:bg-base-900 dark:text-accent-teal lg:h-[4.5rem] lg:w-[4.5rem] lg:rounded-full">
+              <div className="process-icon relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-light-border bg-light-surface text-accent-tealDeep shadow-sm dark:border-white/10 dark:bg-base-900 dark:text-accent-teal lg:h-[4.5rem] lg:w-[4.5rem] lg:rounded-full">
                 <Icon size={23} aria-hidden="true" />
                 <span aria-hidden="true" className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-accent-tealDeep text-[10px] font-bold text-white ring-2 ring-light-bg dark:ring-base-950 lg:h-6 lg:w-6 lg:text-[11px]">
                   {i + 1}
                 </span>
               </div>
-              <div className="min-w-0 flex-1 rounded-2xl border border-light-border bg-light-surface p-4 shadow-sm dark:border-white/10 dark:bg-base-900/60 lg:mt-5 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none dark:lg:bg-transparent">
+              <div className="process-content min-w-0 flex-1 rounded-2xl border border-light-border bg-light-surface p-4 shadow-sm dark:border-white/10 dark:bg-base-900/60 lg:mt-5 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none dark:lg:bg-transparent">
                 <h3 className="font-display text-base font-semibold text-light-text dark:text-white">
                   <span className="sr-only">Step {i + 1}: </span>{title}
                 </h3>
