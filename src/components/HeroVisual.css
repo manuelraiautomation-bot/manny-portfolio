@@ -1,0 +1,40 @@
+.ai-scene { perspective:1000px; --scene-card: rgba(243,245,248,.94); --scene-ink:#253e50; --scene-muted:#427b7c; }
+.dark .ai-scene { --scene-card:rgba(9,24,35,.92); --scene-ink:#d6f5f1; --scene-muted:#5eead4; }
+.ai-stage { position:relative; isolation:isolate; aspect-ratio:1; width:100%; transform-style:preserve-3d; transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)); transition:transform 220ms ease-out; }
+.ai-grid { position:absolute; inset:8%; border-radius:50%; background-image:linear-gradient(#14b8a60a 1px,transparent 1px),linear-gradient(90deg,#14b8a60a 1px,transparent 1px); background-size:24px 24px; mask-image:radial-gradient(circle,#000,transparent 70%); }
+.ai-machine { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.ai-scene-caption,.ai-scene-footer { position:absolute; inset-inline:0; display:flex; align-items:center; justify-content:center; gap:10px; color:var(--scene-muted); font:500 clamp(8px,1vw,10px)/1.5 monospace; letter-spacing:.18em; }
+.ai-scene-caption { top:6%; }
+.ai-scene-caption span { height:5px; width:5px; border-radius:50%; background:#14b8a6; box-shadow:0 0 12px #14b8a6; }
+.ai-scene-footer { bottom:7%; letter-spacing:.13em; }
+.ai-scene-footer i { width:15px; height:1px; background:#14b8a666; }
+.ai-module { position:absolute; width:24%; min-height:16%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:9px 5px; border-radius:16px; border:1px solid #14b8a64d; background:var(--scene-card); box-shadow:inset 0 1px 0 #c9fffa33,inset -3px -4px 8px #00131f55,3px 5px 0 #0c303b,8px 14px 24px #00121f40; color:var(--scene-muted); animation:ai-module-drift 6s ease-in-out var(--module-delay) infinite; }
+.ai-module span { color:var(--scene-ink); font-size:clamp(9px,1.2vw,12px); font-weight:500; line-height:1.3; text-align:center; max-width:100%; }
+.ai-module svg { width:clamp(16px,2vw,21px); height:clamp(16px,2vw,21px); }
+.ai-module i { position:absolute; bottom:0; left:30%; width:40%; height:1px; background:linear-gradient(90deg,transparent,#5eead4,transparent); }
+.ai-module-0 { left:1%; top:22%; }.ai-module-1 { right:1%; top:22%; }
+.ai-module-2 { left:1%; top:62%; }.ai-module-3 { right:1%; top:62%; }
+.ai-module-count { font-weight:500; color:var(--scene-muted); }
+.ai-robot { animation:ai-hover 6s ease-in-out infinite; }
+.ai-orbit { transform-origin:300px 300px; animation:ai-rotate 32s linear infinite; }
+.ai-orbit-inner { animation-direction:reverse; animation-duration:22s; }
+.ai-core-ring { transform-origin:300px 381px; animation:ai-rotate 12s linear infinite; }
+.ai-eyes { transform-origin:300px 245px; animation:ai-blink 7s infinite; }
+.ai-core,.ai-platform-glow,.ai-particles { animation:ai-energy 4s ease-in-out infinite; }
+.ai-data-paths { stroke-dasharray:5 9; animation:ai-data 5s linear infinite; }
+.ai-scene *, .ai-scene.is-in-view[data-paused="true"] * { animation-play-state:paused; }
+.ai-scene.is-in-view[data-paused="false"] * { animation-play-state:running; }
+@keyframes ai-hover { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-10px)} }
+@keyframes ai-rotate { to {transform:rotate(360deg)} }
+@keyframes ai-blink { 0%,43%,47%,100% {transform:scaleY(1)} 45% {transform:scaleY(.12)} }
+@keyframes ai-energy { 0%,100% {opacity:.55} 50% {opacity:1} }
+@keyframes ai-data { to {stroke-dashoffset:-56} }
+@keyframes ai-module-drift { 0%,100% {transform:translate3d(0,0,45px)} 50% {transform:translate3d(0,-5px,45px)} }
+@media(prefers-reduced-motion:reduce) { .ai-scene * { animation:none!important; } .ai-stage { transform:none; transition:none; } .ai-motion-control { display:none; } }
+
+@media (hover:none) { .ai-stage { transform:none; } }
+
+.ai-module { text-decoration:none; cursor:pointer; transition:border-color 180ms ease, box-shadow 180ms ease; }
+.ai-module:hover, .ai-module:focus-visible { border-color:#5eead4; box-shadow:inset 0 1px 0 #c9fffa55,3px 5px 0 #0c303b,0 0 24px #14b8a633; }
+.ai-scene.is-in-view[data-paused="false"] .ai-module:hover,
+.ai-scene.is-in-view[data-paused="false"] .ai-module:focus-visible { animation-play-state:paused; }

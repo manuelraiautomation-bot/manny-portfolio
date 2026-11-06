@@ -118,3 +118,11 @@ export const PROJECTS = [
 export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0]];
 
 export const PROJECT_CATEGORIES = ["AI Agents", "Business Operations", "Content", "Monitoring"];
+
+export function getCategoryAnchor(category) {
+  return category === "All" ? "portfolio" : `portfolio-${category.toLowerCase().replace(/\s+/g, "-")}`;
+}
+
+export function getCategoryFromHash(hash) {
+  return PROJECT_CATEGORIES.find((category) => `#${getCategoryAnchor(category)}` === hash) ?? "All";
+}

@@ -10,7 +10,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-import { PROJECTS, FEATURED_PROJECTS, PROJECT_CATEGORIES } from "../data/projects.js";
+import { PROJECTS, FEATURED_PROJECTS, PROJECT_CATEGORIES, getCategoryAnchor, getCategoryFromHash } from "../data/projects.js";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -278,10 +278,20 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
 }
 
 export default function Portfolio({ featured = false }) {
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState(() => typeof window === "undefined" ? "All" : getCategoryFromHash(window.location.hash));
   const projects = useMemo(() => featured ? FEATURED_PROJECTS : category === "All" ? PROJECTS : PROJECTS.filter((project) => project.category === category), [featured, category]);
   const [activeIndex, setActiveIndex] = useState(null);
   const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (featured) return;
+    const syncCategory = () => {
+      setActiveIndex(null);
+      setCategory(getCategoryFromHash(window.location.hash));
+    };
+    window.addEventListener("hashchange", syncCategory);
+    return () => window.removeEventListener("hashchange", syncCategory);
+  }, [featured]);
 
   const close = useCallback(() => setActiveIndex(null), []);
   const prev = useCallback(
@@ -320,7 +330,11 @@ export default function Portfolio({ featured = false }) {
           <div className="mt-10">
             <div role="group" aria-label="Filter projects by category" className="flex flex-wrap justify-center gap-2">
               {["All", ...PROJECT_CATEGORIES].map((name) => (
-                <button key={name} type="button" aria-pressed={category === name} aria-controls="portfolio-projects" onClick={() => { setActiveIndex(null); setCategory(name); }} className={`rounded-full border px-4 py-2.5 text-sm font-medium transition-colors ${category === name ? "border-accent-tealDeep bg-accent-tealDeep text-white" : "border-light-border bg-light-surface text-light-muted hover:border-accent-tealDeep dark:border-white/15 dark:bg-base-900 dark:text-white/75 dark:hover:border-accent-teal"}`}>
+                <button key={name} id={name === "All" ? undefined : getCategoryAnchor(name)} type="button" aria-pressed={category === name} aria-controls="portfolio-projects" onClick={() => {
+                  setActiveIndex(null);
+                  setCategory(name);
+                  window.history.replaceState(null, "", `#${getCategoryAnchor(name)}`);
+                }} className={`scroll-mt-28 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors ${category === name ? "border-accent-tealDeep bg-accent-tealDeep text-white" : "border-light-border bg-light-surface text-light-muted hover:border-accent-tealDeep dark:border-white/15 dark:bg-base-900 dark:text-white/75 dark:hover:border-accent-teal"}`}>
                   {name} <span className="ml-1 opacity-75">({name === "All" ? PROJECTS.length : PROJECTS.filter((project) => project.category === name).length})</span>
                 </button>
               ))}
