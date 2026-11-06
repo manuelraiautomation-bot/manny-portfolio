@@ -9,98 +9,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const PROJECTS = [
-  {
-    title: "AI Agent for Facebook",
-    tags: ["N8N", "AI AGENT"],
-    image: "/images/portfolio/ai-agent-facebook.png",
-    pain: "Businesses running Facebook pages were missing comments and messages during off hours, losing warm leads to slow response times.",
-    solution:
-      "I built an n8n AI agent that reads incoming messages, references a knowledge document held in memory, and replies automatically through the Facebook Graph API in real time.",
-    benefit:
-      "Response time dropped from hours to seconds, and the page now stays responsive 24/7 without hiring extra support staff.",
-  },
-  {
-    title: "AI Content Repurposing",
-    tags: ["ZAPIER", "CONTENT AI"],
-    image: "/images/portfolio/ai-content-repurposing.png",
-    pain: "A single recorded video was going unused after posting once — no blog content, no LinkedIn or Facebook follow-up.",
-    solution:
-      "I built a Zapier automation that detects new videos in Google Drive, transcribes them with AI, generates two blog posts, then auto-publishes to LinkedIn and Facebook Pages through parallel paths.",
-    benefit:
-      "One video now produces multiple ready-to-publish pieces of content automatically, multiplying reach without extra editing work.",
-  },
-  {
-    title: "AI Facebook Messenger Knowledge Assistant",
-    tags: ["N8N", "SUPPORT AI"],
-    image: "/images/portfolio/ai-messenger-knowledge-assistant.png",
-    pain: "Support was answering the same FAQs on repeat in Messenger, with no fallback if the primary AI model went down.",
-    solution:
-      "I built an n8n support agent that pulls answers from a knowledge base, uses Gemini 2.5 as the primary model with a Groq Llama backup for redundancy, and keeps conversation memory across messages.",
-    benefit:
-      "Customers get instant, accurate answers around the clock, with near-zero downtime thanks to automatic model failover.",
-  },
-  {
-    title: "AI Job Scraper + Resume Optimizer",
-    tags: ["N8N", "AI AUTOMATION"],
-    image: "/images/portfolio/ai-job-scraper-resume-optimizer.png",
-    pain: "Manually searching job boards and tailoring a resume and proposal for every listing was eating hours every week.",
-    solution:
-      "I built a Slack-triggered automation that searches job listings, validates matches with AI, then generates a tailored resume and proposal draft for each one.",
-    benefit:
-      "What used to take an hour per application now happens in minutes, with drafts delivered straight to Slack and Gmail.",
-  },
-  {
-    title: "Email Attachment Sorting, Log & Summary",
-    tags: ["MAKE", "GEMINI"],
-    image: "/images/portfolio/email-attachment-sorting.png",
-    pain: "Important email attachments were getting buried in an inbox with no organized record of what arrived or what it contained.",
-    solution:
-      "I built a Make.com automation that detects new attachments, uses Gemini to read and summarize each file, uploads it to Google Drive, logs it in a spreadsheet, and emails a summary.",
-    benefit:
-      "Every attachment is now automatically filed, searchable, and summarized — no more digging through inboxes.",
-  },
-  {
-    title: "Xero Bank Statement to Asana Automation",
-    tags: ["MAKE", "FINANCE OPS"],
-    image: "/images/portfolio/xero-asana-automation.png",
-    pain: "Bookkeeping data was split across Xero, Asana, and spreadsheets, requiring manual entry to keep everything in sync.",
-    solution:
-      "I built a Make.com integration that watches completed Asana tasks, pulls the relevant Xero data through its API, and routes it into Google Sheets and Asana attachments automatically.",
-    benefit:
-      "Financial data now stays in sync across all three tools without manual re-entry, cutting bookkeeping admin time significantly.",
-  },
-  {
-    title: "YT Shorts & FB Reels Video Generation",
-    tags: ["N8N", "VIDEO AI"],
-    image: "/images/portfolio/yt-shorts-fb-reels-video-generation.png",
-    pain: "Producing daily short-form video for YouTube Shorts and Facebook Reels was too time-consuming to sustain manually.",
-    solution:
-      "I built a fully automated n8n pipeline that generates a video prompt with AI, calls a video generation API, waits for rendering to finish, then uploads the finished video straight to Facebook and YouTube.",
-    benefit:
-      "A content channel now publishes new short-form video on a schedule, with zero manual editing or uploading.",
-  },
-  {
-    title: "AI Voice Receptionist & Appointment Booking",
-    tags: ["N8N", "VAPI", "VOICE AI"],
-    image: "/images/portfolio/ai-voice-receptionist.png",
-    pain: "Handling appointment requests, rescheduling, and phone messages manually can interrupt a small team's day and leave follow-ups scattered across tools.",
-    solution:
-      "I built an n8n backend for a Vapi voice receptionist that checks Google Calendar availability, suggests open slots, re-checks availability before booking, and reschedules existing appointments. It also saves messages and call reports to Google Sheets and sends booking, rescheduling, and message alerts through Gmail.",
-    benefit:
-      "Brings scheduling, caller messages, and call records into one connected workflow, with replies for missing booking details, unavailable slots, and bookings that cannot be found.",
-  },
-  {
-    title: "Property Enquiry & Asana Automation",
-    tags: ["N8N", "ASANA", "PROPERTY OPS"],
-    image: "/images/portfolio/property-enquiry-asana.png",
-    pain: "Property enquiries, listing details, viewing links, and follow-up tasks can become scattered across spreadsheets, files, and project boards.",
-    solution:
-      "I built a webhook-driven n8n workflow that creates and updates Asana tasks, logs enquiries in Google Sheets, retrieves files from Google Drive, looks up property viewing links, and finds matching leads. Task creation can also attach advert links, viewing links, and relevant files.",
-    benefit:
-      "Connects enquiry records, property information, and Asana follow-ups so the team can retrieve details and manage next steps through one automation entry point.",
-  },
-];
+import { PROJECTS, FEATURED_PROJECTS } from "../data/projects.js";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -203,7 +112,7 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
           {project.title}
         </h3>
         <p className="mt-1.5 line-clamp-2 text-xs text-light-muted dark:text-white/55">
-          {project.pain}
+          {project.summary ?? project.pain}
         </p>
       </div>
     </button>
@@ -212,6 +121,8 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
 
 function CaseStudyModal({ project, onClose, onPrev, onNext }) {
   const dialogRef = useRef(null);
+  const [expanded, setExpanded] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
 
   useEffect(() => {
     const previousFocus = document.activeElement;
@@ -256,7 +167,7 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
         role="dialog"
         aria-modal="true"
         aria-label={project.title}
-        className="relative flex max-h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-base-900 shadow-2xl outline-none"
+        className={`relative flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-base-900 shadow-2xl outline-none ${expanded ? "h-[92dvh] max-w-[1600px]" : "max-h-[88dvh] max-w-3xl"}`}
       >
         <button
           type="button"
@@ -284,16 +195,23 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
           <ChevronRight size={18} />
         </button>
 
-        <div className="overflow-y-auto">
-          <div className="aspect-video w-full bg-black">
+        <div className="flex shrink-0 flex-wrap items-center gap-3 border-b border-white/10 py-4 pl-5 pr-16 text-sm text-white">
+          <button type="button" onClick={() => { setExpanded((value) => !value); setZoomed(false); }} className="rounded-lg border border-white/20 px-3 py-2 hover:bg-white/10">
+            {expanded ? "Back to case study" : "Enlarge screenshot"}
+          </button>
+          {expanded && <button type="button" onClick={() => setZoomed((value) => !value)} className="rounded-lg border border-white/20 px-3 py-2 hover:bg-white/10">{zoomed ? "Fit image" : "Zoom to full size"}</button>}
+          <a href={project.image} target="_blank" rel="noopener noreferrer" className="text-white/80 underline underline-offset-4">Open original image</a>
+        </div>
+        <div className={`min-h-0 overflow-auto ${expanded ? "flex-1" : ""}`}>
+          <div className={expanded ? "flex min-h-full min-w-full items-start justify-start bg-black" : "aspect-video w-full bg-black"}>
             <img
               src={project.image}
               alt={project.title}
-              className="h-full w-full object-contain"
+              className={expanded ? (zoomed ? "max-w-none shrink-0" : "h-full max-h-[72dvh] w-full object-contain") : "h-full w-full object-contain"}
             />
           </div>
 
-          <div className="p-6 sm:p-8">
+          <div className={`p-6 sm:p-8 ${expanded ? "hidden" : ""}`}>
             <div className="mb-2 flex flex-wrap gap-1.5">
               {project.tags.map((tag) => (
                 <span
@@ -344,24 +262,25 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
   );
 }
 
-export default function Portfolio() {
+export default function Portfolio({ featured = false }) {
+  const projects = featured ? FEATURED_PROJECTS : PROJECTS;
   const [activeIndex, setActiveIndex] = useState(null);
   const reducedMotion = useReducedMotion();
 
   const close = useCallback(() => setActiveIndex(null), []);
   const prev = useCallback(
-    () => setActiveIndex((i) => (i === null ? null : (i - 1 + PROJECTS.length) % PROJECTS.length)),
-    []
+    () => setActiveIndex((i) => (i === null ? null : (i - 1 + projects.length) % projects.length)),
+    [projects]
   );
   const next = useCallback(
-    () => setActiveIndex((i) => (i === null ? null : (i + 1) % PROJECTS.length)),
-    []
+    () => setActiveIndex((i) => (i === null ? null : (i + 1) % projects.length)),
+    [projects]
   );
 
-  const activeProject = activeIndex === null ? null : PROJECTS[activeIndex];
+  const activeProject = activeIndex === null ? null : projects[activeIndex];
 
   return (
-    <section id="portfolio" className="relative overflow-hidden">
+    <section id={featured ? "featured-work" : "portfolio"} className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute right-0 top-0 h-[24rem] w-[24rem] rounded-full bg-accent-teal/10 opacity-70 blur-[120px] dark:opacity-100" />
       </div>
@@ -370,19 +289,19 @@ export default function Portfolio() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-4 py-1.5 text-xs font-medium tracking-wide text-light-muted shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:shadow-none">
             <Search size={14} className="text-accent-teal" />
-            SELECTED WORK
+            {featured ? "FEATURED PROJECTS" : "SELECTED WORK"}
           </div>
           <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
-            Workflows I&rsquo;ve{" "}
-            <span className="bg-brand-gradient bg-clip-text text-transparent">actually built</span>
+            {featured ? "Practical automation." : "Workflows I’ve"}{" "}
+            <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            Real automations, real problems solved. Click any screenshot to see the pain point, the build, and the result.
+            {featured ? "Explore three examples of how I connect tools to handle bookings, enquiries, and customer conversations. Select a project for the details." : "Explore all nine projects. Select a card to read the problem, approach, and benefit, or enlarge the workflow screenshot."}
           </p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((project, i) => (
+          {projects.map((project, i) => (
             <ProjectCard
               key={project.title}
               project={project}
@@ -392,6 +311,8 @@ export default function Portfolio() {
           ))}
 
         </div>
+
+        {featured && <div className="mt-8 text-center"><a href="#portfolio" className="inline-flex rounded-full border border-light-border px-6 py-3 text-sm font-semibold text-light-text hover:bg-light-surface dark:border-white/20 dark:text-white dark:hover:bg-white/5">Explore all {PROJECTS.length} projects →</a></div>}
 
         {activeProject && (
           <CaseStudyModal project={activeProject} onClose={close} onPrev={prev} onNext={next} />

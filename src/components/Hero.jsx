@@ -6,10 +6,8 @@ import {
   Workflow,
   Database,
   BarChart3,
-  Repeat2,
   Wand2,
   Cog,
-  ShieldCheck,
 } from "lucide-react";
 import robotCharacter from "../assets/robot-character.png";
 
@@ -22,29 +20,6 @@ const ORBIT_CARDS = [
   { label: "Google Workspace", icon: Wand2, className: "right-2 top-2 lg:right-6 lg:top-4" },
   { label: "Notion Systems", icon: Cog, className: "right-0 top-36 lg:right-0 lg:top-40" },
   { label: "Reporting & Dashboards", icon: BarChart3, className: "right-2 top-72 lg:right-4 lg:top-80" },
-];
-
-const INTRO_CHIPS = [
-  {
-    icon: Sparkles,
-    title: "AI Automation Specialist",
-    desc: "Building smart workflows with AI.",
-  },
-  {
-    icon: Repeat2,
-    title: "Workflow Architect",
-    desc: "Design automated systems that scale.",
-  },
-  {
-    icon: Wand2,
-    title: "Tech-Savvy Problem Solver",
-    desc: "I turn complex problems into simple solutions.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Detail-Oriented & Reliable",
-    desc: "Committed to accuracy, efficiency & results.",
-  },
 ];
 
 export default function Hero() {
@@ -65,45 +40,34 @@ export default function Hero() {
               AI-POWERED SOLUTIONS THAT DRIVE RESULTS
             </div>
 
-            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-light-text dark:text-white lg:text-6xl">
-              I Automate.
-              <br />
-              You{" "}
-              <span className="elevate-jump relative inline-block">
-                <span className="bg-brand-gradient bg-clip-text text-transparent">
-                  Elevate.
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="elevate-shimmer pointer-events-none absolute inset-0 bg-clip-text text-transparent"
-                >
-                  Elevate.
-                </span>
-              </span>
+            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-light-text dark:text-white sm:text-5xl lg:text-6xl">
+              AI Agents &amp; Workflow Automation for{" "}
+              <span className="bg-brand-gradient bg-clip-text text-transparent">Small Businesses</span>
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-light-muted dark:text-white/60">
-              I help small businesses save time, reduce costs, and scale faster
-              as an AI automation specialist building smart systems and seamless integrations.
+              I’m Manuel. I build AI receptionists, customer-support agents,
+              and connected workflows that take repetitive tasks off your team’s plate.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
-                href="#portfolio"
+                href="#contact"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03]"
               >
-                View My Work
+                Book a Discovery Call
                 <ArrowRight size={16} />
               </a>
               <a
-                href="/Manuel_Rebutido_Resume.pdf"
-                download
+                href="#featured-work"
                 className="inline-flex items-center gap-2 rounded-full border border-light-border bg-light-surface px-6 py-3 text-sm font-semibold text-light-text transition-colors hover:border-light-text/30 dark:border-white/15 dark:bg-transparent dark:text-white/90 dark:hover:border-white/30 dark:hover:bg-white/5"
               >
-                Download CV
-                <Download size={16} />
+                View Featured Work
+                <ArrowRight size={16} />
               </a>
             </div>
+
+            <a href="/Manuel_Rebutido_Resume.pdf" download className="mt-5 inline-flex items-center gap-2 text-sm text-light-muted underline underline-offset-4 dark:text-white/70">Download CV <Download size={14} /></a>
 
             <div className="mt-12">
               <p className="text-xs uppercase tracking-wide text-light-muted/80 dark:text-white/40">
@@ -171,59 +135,6 @@ export default function Hero() {
           @keyframes orbit-float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
-          }
-
-          /* --- "Elevate." shimmer sweep: a bright glow travels E -> e --- */
-          .elevate-shimmer {
-            background-image: linear-gradient(
-              100deg,
-              transparent 30%,
-              rgba(255, 255, 255, 0.95) 46%,
-              rgba(45, 212, 191, 1) 50%,
-              rgba(255, 255, 255, 0.95) 54%,
-              transparent 70%
-            );
-            background-size: 300% 100%;
-            background-position: 150% 0;
-            animation: elevate-sweep 7.5s ease-in-out infinite;
-            animation-delay: 0.1s;
-            filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.85));
-            mix-blend-mode: screen;
-          }
-
-          .dark .elevate-shimmer {
-            mix-blend-mode: plus-lighter;
-          }
-
-          @keyframes elevate-sweep {
-            0% { background-position: 150% 0; }
-            35% { background-position: -50% 0; }
-            100% { background-position: -50% 0; }
-          }
-
-          @media (prefers-reduced-motion: reduce) {
-            .elevate-shimmer {
-              animation: none !important;
-              background-position: -50% 0;
-              opacity: 0;
-            }
-            .elevate-jump {
-              animation: none !important;
-            }
-          }
-
-          /* --- "Elevate." playful jump/bounce --- */
-          .elevate-jump {
-            animation: elevate-jump 2.2s ease-in-out infinite;
-          }
-
-          @keyframes elevate-jump {
-            0%, 100% { transform: translateY(0); }
-            20% { transform: translateY(-14px); }
-            35% { transform: translateY(0); }
-            45% { transform: translateY(-6px); }
-            55% { transform: translateY(0); }
-            100% { transform: translateY(0); }
           }
 
           /* --- Hologram card effect: teal only, elegant not busy --- */
@@ -343,52 +254,7 @@ export default function Hero() {
           }
         `}</style>
 
-        {/* Intro strip */}
-        <div className="mt-16 rounded-3xl border border-light-border bg-light-surface p-6 shadow-sm dark:border-white/10 dark:bg-base-900/60 dark:shadow-none lg:p-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-8">
-            <div className="flex items-start gap-4 lg:w-96 lg:shrink-0">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-light-surface to-light-surfaceMuted ring-1 ring-light-border dark:from-base-700 dark:to-base-900 dark:ring-white/10">
-                <span className="font-display text-lg font-bold text-light-text/30 dark:text-white/40">
-                  M
-                </span>
-              </div>
-              <div>
-                <p className="font-display text-base font-semibold text-light-text dark:text-white">
-                  Hi, I&rsquo;m Manuel! 👋
-                </p>
-                <p className="mt-1 text-sm leading-relaxed text-light-muted dark:text-white/50">
-                  An AI Tech VA &amp; Automation Specialist passionate about
-                  building intelligent systems that streamline workflows and
-                  empower businesses to focus on what truly matters.
-                </p>
-                <a
-                  href="#about"
-                  className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-light-border px-4 py-1.5 text-xs font-medium text-light-text hover:bg-light-surfaceMuted dark:border-white/15 dark:text-white/80 dark:hover:bg-white/5"
-                >
-                  More About Me
-                  <ArrowRight size={12} />
-                </a>
-              </div>
-            </div>
 
-            <div className="grid flex-1 grid-cols-2 gap-4 lg:grid-cols-4">
-              {INTRO_CHIPS.map(({ icon: Icon, title, desc }) => (
-                <div
-                  key={title}
-                  className="rounded-2xl border border-light-border bg-light-surfaceMuted p-4 dark:border-white/10 dark:bg-base-850/60"
-                >
-                  <Icon size={18} className="text-accent-teal" />
-                  <p className="mt-3 text-sm font-semibold text-light-text dark:text-white">
-                    {title}
-                  </p>
-                  <p className="mt-1 text-xs leading-relaxed text-light-muted dark:text-white/45">
-                    {desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
