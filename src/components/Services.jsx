@@ -49,16 +49,6 @@ export default function Services() {
             opacity: 0;
           }
         }
-        .servicesScroll {
-          scrollbar-width: thin;
-        }
-        .servicesScroll::-webkit-scrollbar {
-          height: 6px;
-        }
-        .servicesScroll::-webkit-scrollbar-thumb {
-          background: rgba(148, 163, 184, 0.35);
-          border-radius: 999px;
-        }
       `}</style>
 
       <div className="mx-auto max-w-2xl text-center">
@@ -66,46 +56,41 @@ export default function Services() {
           <span className="h-px w-6 bg-accent-teal" />
           HOW IT WORKS
         </div>
-        <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
+        <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white sm:text-4xl lg:text-5xl">
           Our 5-Step Process
         </h2>
       </div>
 
-      <div className="servicesScroll mt-16 snap-x snap-mandatory overflow-x-auto pb-4 lg:overflow-visible lg:pb-0">
-        <div className="relative flex min-w-max gap-10 px-2 sm:gap-14 lg:min-w-0 lg:justify-between lg:gap-6">
-          {/* static connecting line */}
-          <div className="pointer-events-none absolute left-11 right-11 top-9 h-px bg-light-border dark:bg-white/10" />
+      <div className="relative mt-10 lg:mt-16">
+        {/* Desktop connector; mobile connectors follow each step's height. */}
+        <div aria-hidden="true" className="pointer-events-none absolute left-[10%] right-[10%] top-9 hidden h-px bg-light-border dark:bg-white/10 lg:block">
+          <span className="servicesPulseDot absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-teal shadow-glow" />
+        </div>
 
-          {/* traveling pulse, confined to the same track as the line */}
-          <div className="pointer-events-none absolute left-11 right-11 top-9 h-px overflow-visible">
-            <span className="servicesPulseDot absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-teal shadow-glow" />
-          </div>
-
+        <ol className="grid gap-0 lg:grid-cols-5 lg:gap-6">
           {STEPS.map(({ icon: Icon, title, desc }, i) => (
-            <div
-              key={title}
-              className="relative z-10 flex w-40 flex-shrink-0 snap-center flex-col items-center text-center sm:w-48 lg:w-40"
-            >
-              <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-white/10 bg-base-900 shadow-sm">
-                <Icon size={26} className="text-accent-teal" />
-                <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-gradient text-[11px] font-bold text-white shadow-glow">
+            <li key={title} className="relative flex min-w-0 gap-4 pb-6 last:pb-0 lg:flex-col lg:items-center lg:gap-0 lg:pb-0 lg:text-center">
+              {i < STEPS.length - 1 && (
+                <span aria-hidden="true" className="absolute bottom-0 left-6 top-12 w-px bg-light-border dark:bg-accent-teal/25 lg:hidden" />
+              )}
+              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-light-border bg-light-surface text-accent-tealDeep shadow-sm dark:border-white/10 dark:bg-base-900 dark:text-accent-teal lg:h-[4.5rem] lg:w-[4.5rem] lg:rounded-full">
+                <Icon size={23} aria-hidden="true" />
+                <span aria-hidden="true" className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-accent-tealDeep text-[10px] font-bold text-white ring-2 ring-light-bg dark:ring-base-950 lg:h-6 lg:w-6 lg:text-[11px]">
                   {i + 1}
                 </span>
               </div>
-              <h3 className="mt-5 font-display text-base font-semibold text-light-text dark:text-white">
-                {title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-white/65">
-                {desc}
-              </p>
-            </div>
+              <div className="min-w-0 flex-1 rounded-2xl border border-light-border bg-light-surface p-4 shadow-sm dark:border-white/10 dark:bg-base-900/60 lg:mt-5 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none dark:lg:bg-transparent">
+                <h3 className="font-display text-base font-semibold text-light-text dark:text-white">
+                  <span className="sr-only">Step {i + 1}: </span>{title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-light-muted dark:text-white/70">
+                  {desc}
+                </p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
-
-      <p className="mt-3 text-center text-xs text-light-muted dark:text-white/60 lg:hidden">
-        Swipe to see all 5 steps →
-      </p>
     </section>
   );
 }
