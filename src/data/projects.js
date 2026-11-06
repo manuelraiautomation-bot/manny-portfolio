@@ -92,6 +92,17 @@ export const PROJECTS = [
     benefit:
       "Connects enquiry records, property information, and Asana follow-ups so the team can retrieve details and manage next steps through one automation entry point.",
   },
+  {
+    title: "Error Handler — Log + Email Alert",
+    image: "/images/portfolio/error-handler-log-email-alert.png",
+    summary: "Captures n8n failures, logs execution details in Google Sheets, and sends a Gmail alert.",
+    tags: ["N8N", "GOOGLE SHEETS", "GMAIL"],
+    pain: "Workflow failures can go unnoticed without a clear error record and a notification to the person responsible.",
+    solution:
+      "I built an n8n error workflow that starts with an Error Trigger, formats the failure details, appends a record to Google Sheets, and then sends an alert through Gmail. The log includes a London timestamp, workflow name, failed node, error message, execution ID and URL, execution mode, and workflow ID.",
+    benefit:
+      "Keeps failure details in a central log and sends an email alert, giving the team the context and execution reference needed to investigate.",
+  },
 ];
 
 export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0]];

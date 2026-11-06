@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
   Search,
+  ShieldAlert,
   X,
   ChevronLeft,
   ChevronRight,
@@ -84,6 +85,8 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
         onMouseLeave={handleMouseLeave}
         className="relative aspect-video w-full cursor-zoom-in overflow-hidden bg-black/40"
       >
+        {project.image ? (
+          <>
         <img
           ref={imgRef}
           src={project.image}
@@ -96,6 +99,13 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
             <Search size={18} />
           </span>
         </div>
+          </>
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center gap-3 bg-light-surfaceMuted p-5 text-center dark:bg-base-850">
+            <ShieldAlert size={44} aria-hidden="true" className="text-accent-tealDeep dark:text-accent-teal" />
+            <span className="font-display text-sm font-semibold text-light-text dark:text-white">Error logging &amp; email alerts</span>
+          </div>
+        )}
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-2 flex flex-wrap gap-1.5">
@@ -152,6 +162,11 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
     };
   }, [onClose, onPrev, onNext]);
 
+  useEffect(() => {
+    setExpanded(false);
+    setZoomed(false);
+  }, [project]);
+
   if (!project) return null;
 
   return (
@@ -195,21 +210,21 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
           <ChevronRight size={18} />
         </button>
 
-        <div className="flex shrink-0 flex-wrap items-center gap-3 border-b border-white/10 py-4 pl-5 pr-16 text-sm text-white">
+        {project.image && <div className="flex shrink-0 flex-wrap items-center gap-3 border-b border-white/10 py-4 pl-5 pr-16 text-sm text-white">
           <button type="button" onClick={() => { setExpanded((value) => !value); setZoomed(false); }} className="rounded-lg border border-white/20 px-3 py-2 hover:bg-white/10">
             {expanded ? "Back to case study" : "Enlarge screenshot"}
           </button>
           {expanded && <button type="button" onClick={() => setZoomed((value) => !value)} className="rounded-lg border border-white/20 px-3 py-2 hover:bg-white/10">{zoomed ? "Fit image" : "Zoom to full size"}</button>}
           <a href={project.image} target="_blank" rel="noopener noreferrer" className="text-white/80 underline underline-offset-4">Open original image</a>
-        </div>
+        </div>}
         <div className={`min-h-0 overflow-auto ${expanded ? "flex-1" : ""}`}>
-          <div className={expanded ? "flex min-h-full min-w-full items-start justify-start bg-black" : "aspect-video w-full bg-black"}>
+          {project.image ? <div className={expanded ? "flex min-h-full min-w-full items-start justify-start bg-black" : "aspect-video w-full bg-black"}>
             <img
               src={project.image}
               alt={project.title}
               className={expanded ? (zoomed ? "max-w-none shrink-0" : "h-full max-h-[72dvh] w-full object-contain") : "h-full w-full object-contain"}
             />
-          </div>
+          </div> : <div className="flex justify-center bg-base-850 py-10"><ShieldAlert size={56} aria-hidden="true" className="text-accent-teal" /></div>}
 
           <div className={`p-6 sm:p-8 ${expanded ? "hidden" : ""}`}>
             <div className="mb-2 flex flex-wrap gap-1.5">
@@ -296,7 +311,7 @@ export default function Portfolio({ featured = false }) {
             <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            {featured ? "Explore three examples of how I connect tools to handle bookings, enquiries, and customer conversations. Select a project for the details." : "Explore all nine projects. Select a card to read the problem, approach, and benefit, or enlarge the workflow screenshot."}
+            {featured ? "Explore three examples of how I connect tools to handle bookings, enquiries, and customer conversations. Select a project for the details." : `Explore all ${PROJECTS.length} projects. Select a card to read the problem, approach, and benefit. Where available, enlarge the workflow screenshot.`}
           </p>
         </div>
 
