@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import robotCharacter from "../assets/robot-character.png";
 
-const TOOLS = ["OpenAI", "n8n", "Make", "Google Workspace", "Notion", "Airtable"];
+const TOOLS = ["n8n", "Make", "Zapier", "GHL"];
 
 const ORBIT_CARDS = [
   { label: "AI Agents", icon: Bot, className: "left-2 top-4 lg:left-6 lg:top-6" },
