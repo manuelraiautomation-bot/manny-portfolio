@@ -1,0 +1,22 @@
+PROPERTY ENQUIRY & ASANA AUTOMATION — 30-SECOND NARRATION
+Suggested voice: confident, conversational male. Adjust pacing in CapCut.
+
+00:00–00:04
+Turn property enquiries into clear, connected follow-ups.
+
+00:04–00:10
+A webhook routes the request, while enquiry details can be recorded in Google Sheets.
+
+00:10–00:16
+The workflow creates an Asana task, adding available advert links, viewing information, and relevant files.
+
+00:16–00:22
+Separate actions retrieve property documents and look up viewing links, keeping the information within reach.
+
+00:22–00:27
+Existing tasks are updated while previous notes are retained.
+
+00:27–00:30
+Connect. Automate. Deliver. Build with Manny.
+
+Designed interface screens and sample data illustrate supported workflow actions. This is not a screen recording of live property enquiries.
