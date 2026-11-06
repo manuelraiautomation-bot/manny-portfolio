@@ -1,0 +1,22 @@
+FACEBOOK AI AGENT — 30-SECOND NARRATION
+Suggested voice: confident, conversational male. Adjust pacing in CapCut.
+
+00:00–00:04
+Give your Facebook page a smarter way to respond.
+
+00:04–00:10
+When a visitor sends a question, n8n receives the message and passes it to the AI agent.
+
+00:10–00:16
+The agent references your business knowledge to prepare a relevant answer.
+
+00:16–00:22
+The response is sent back through the Facebook Graph API, continuing the conversation.
+
+00:22–00:27
+Less repetitive work, with useful answers grounded in your business information.
+
+00:27–00:30
+Connect. Automate. Deliver. Build with Manny.
+
+Designed interface screens and sample conversation illustrate the workflow. This is not a screen recording of a live Facebook conversation.
