@@ -93,7 +93,7 @@ export default function Navbar() {
                     : "text-light-muted hover:text-light-text dark:text-white/60 dark:hover:text-white"
                 }`}
               >
-                {link === "Services" ? "Process" : link}
+                {link}
               </a>
             );
           })}
@@ -158,7 +158,7 @@ export default function Navbar() {
                   }`}
                   onClick={() => setOpen(false)}
                 >
-                  {link === "Services" ? "Process" : link}
+                  {link}
                 </a>
               );
             })}

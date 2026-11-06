@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
 import Experience from "./components/Experience.jsx";
+import ServiceOffers from "./components/ServiceOffers.jsx";
 import Services from "./components/Services.jsx";
 import Portfolio from "./components/Portfolio.jsx";
 import Skills from "./components/Skills.jsx";
@@ -18,6 +19,7 @@ export default function App() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <Portfolio featured />
+        <ServiceOffers />
         <About />
         <Experience />
         <Services />

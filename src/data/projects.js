@@ -1,5 +1,6 @@
 export const PROJECTS = [
   {
+    category: "AI Agents",
     title: "AI Agent for Facebook",
     summary: "Answers Facebook enquiries using business knowledge through an n8n AI agent.",
     tags: ["N8N", "AI AGENT"],
@@ -11,6 +12,7 @@ export const PROJECTS = [
       "Response time dropped from hours to seconds, and the page now stays responsive 24/7 without hiring extra support staff.",
   },
   {
+    category: "Content",
     title: "AI Content Repurposing",
     tags: ["ZAPIER", "CONTENT AI"],
     image: "/images/portfolio/ai-content-repurposing.png",
@@ -21,6 +23,7 @@ export const PROJECTS = [
       "One video now produces multiple ready-to-publish pieces of content automatically, multiplying reach without extra editing work.",
   },
   {
+    category: "AI Agents",
     title: "AI Facebook Messenger Knowledge Assistant",
     tags: ["N8N", "SUPPORT AI"],
     image: "/images/portfolio/ai-messenger-knowledge-assistant.png",
@@ -31,6 +34,7 @@ export const PROJECTS = [
       "Customers get instant, accurate answers around the clock, with near-zero downtime thanks to automatic model failover.",
   },
   {
+    category: "Business Operations",
     title: "AI Job Scraper + Resume Optimizer",
     tags: ["N8N", "AI AUTOMATION"],
     image: "/images/portfolio/ai-job-scraper-resume-optimizer.png",
@@ -41,6 +45,7 @@ export const PROJECTS = [
       "What used to take an hour per application now happens in minutes, with drafts delivered straight to Slack and Gmail.",
   },
   {
+    category: "Business Operations",
     title: "Email Attachment Sorting, Log & Summary",
     tags: ["MAKE", "GEMINI"],
     image: "/images/portfolio/email-attachment-sorting.png",
@@ -51,6 +56,7 @@ export const PROJECTS = [
       "Every attachment is now automatically filed, searchable, and summarized — no more digging through inboxes.",
   },
   {
+    category: "Business Operations",
     title: "Xero Bank Statement to Asana Automation",
     tags: ["MAKE", "FINANCE OPS"],
     image: "/images/portfolio/xero-asana-automation.png",
@@ -61,6 +67,7 @@ export const PROJECTS = [
       "Financial data now stays in sync across all three tools without manual re-entry, cutting bookkeeping admin time significantly.",
   },
   {
+    category: "Content",
     title: "YT Shorts & FB Reels Video Generation",
     tags: ["N8N", "VIDEO AI"],
     image: "/images/portfolio/yt-shorts-fb-reels-video-generation.png",
@@ -71,6 +78,7 @@ export const PROJECTS = [
       "A content channel now publishes new short-form video on a schedule, with zero manual editing or uploading.",
   },
   {
+    category: "AI Agents",
     title: "AI Voice Receptionist & Appointment Booking",
     summary: "Checks calendar availability, books and reschedules appointments, and records caller messages.",
     tags: ["N8N", "VAPI", "VOICE AI"],
@@ -82,6 +90,7 @@ export const PROJECTS = [
       "Brings scheduling, caller messages, and call records into one connected workflow, with replies for missing booking details, unavailable slots, and bookings that cannot be found.",
   },
   {
+    category: "Business Operations",
     title: "Property Enquiry & Asana Automation",
     summary: "Connects property enquiries, viewing links, and files with Asana follow-up tasks.",
     tags: ["N8N", "ASANA", "PROPERTY OPS"],
@@ -93,6 +102,7 @@ export const PROJECTS = [
       "Connects enquiry records, property information, and Asana follow-ups so the team can retrieve details and manage next steps through one automation entry point.",
   },
   {
+    category: "Monitoring",
     title: "Error Handler — Log + Email Alert",
     image: "/images/portfolio/error-handler-log-email-alert.png",
     summary: "Captures n8n failures, logs execution details in Google Sheets, and sends a Gmail alert.",
@@ -106,3 +116,5 @@ export const PROJECTS = [
 ];
 
 export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0]];
+
+export const PROJECT_CATEGORIES = ["AI Agents", "Business Operations", "Content", "Monitoring"];

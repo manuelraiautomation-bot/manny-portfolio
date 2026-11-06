@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import {
   Search,
   ShieldAlert,
@@ -10,7 +10,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-import { PROJECTS, FEATURED_PROJECTS } from "../data/projects.js";
+import { PROJECTS, FEATURED_PROJECTS, PROJECT_CATEGORIES } from "../data/projects.js";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -278,7 +278,8 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
 }
 
 export default function Portfolio({ featured = false }) {
-  const projects = featured ? FEATURED_PROJECTS : PROJECTS;
+  const [category, setCategory] = useState("All");
+  const projects = useMemo(() => featured ? FEATURED_PROJECTS : category === "All" ? PROJECTS : PROJECTS.filter((project) => project.category === category), [featured, category]);
   const [activeIndex, setActiveIndex] = useState(null);
   const reducedMotion = useReducedMotion();
 
@@ -315,7 +316,19 @@ export default function Portfolio({ featured = false }) {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {!featured && (
+          <div className="mt-10">
+            <div role="group" aria-label="Filter projects by category" className="flex flex-wrap justify-center gap-2">
+              {["All", ...PROJECT_CATEGORIES].map((name) => (
+                <button key={name} type="button" aria-pressed={category === name} aria-controls="portfolio-projects" onClick={() => { setActiveIndex(null); setCategory(name); }} className={`rounded-full border px-4 py-2.5 text-sm font-medium transition-colors ${category === name ? "border-accent-tealDeep bg-accent-tealDeep text-white" : "border-light-border bg-light-surface text-light-muted hover:border-accent-tealDeep dark:border-white/15 dark:bg-base-900 dark:text-white/75 dark:hover:border-accent-teal"}`}>
+                  {name} <span className="ml-1 opacity-75">({name === "All" ? PROJECTS.length : PROJECTS.filter((project) => project.category === name).length})</span>
+                </button>
+              ))}
+            </div>
+            <p role="status" aria-live="polite" aria-atomic="true" className="mt-5 text-center text-sm text-light-muted dark:text-white/65">Showing {projects.length} {projects.length === 1 ? "project" : "projects"}{category === "All" ? " across all categories" : ` in ${category}`}</p>
+          </div>
+        )}
+        <div id={featured ? undefined : "portfolio-projects"} className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.title}

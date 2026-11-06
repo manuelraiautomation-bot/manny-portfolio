@@ -58,7 +58,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+    <section ref={sectionRef} id="process" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
       <style>{`
         @keyframes servicesPulseTravel {
           0% { left: 0%; opacity: 0; }
@@ -91,15 +91,15 @@ export default function Services() {
         .process-line-pulse {
           animation: processLineTravel 3.6s ease-in-out infinite;
         }
-        #services .servicesPulseDot,
-        #services .process-line-pulse { animation-play-state: paused; }
-        #services.process-in-view .servicesPulseDot,
-        #services.process-in-view .process-line-pulse { animation-play-state: running; }
+        #process .servicesPulseDot,
+        #process .process-line-pulse { animation-play-state: paused; }
+        #process.process-in-view .servicesPulseDot,
+        #process.process-in-view .process-line-pulse { animation-play-state: running; }
         @media (prefers-reduced-motion: reduce) {
-          #services .process-step .process-content,
-          #services .process-step .process-icon { animation: none; }
-          #services .servicesPulseDot,
-          #services .process-line-pulse {
+          #process .process-step .process-content,
+          #process .process-step .process-icon { animation: none; }
+          #process .servicesPulseDot,
+          #process .process-line-pulse {
             animation: none;
             opacity: 0;
           }
