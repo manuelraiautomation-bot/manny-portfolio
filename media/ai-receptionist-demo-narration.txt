@@ -1,0 +1,22 @@
+AI VOICE RECEPTIONIST — 30-SECOND NARRATION
+Suggested voice: confident, conversational male. Adjust pacing in CapCut.
+
+00:00–00:04
+Meet your AI receptionist, powered by Vapi and n8n.
+
+00:04–00:10
+A caller asks for an appointment. The assistant gathers the request and checks the calendar.
+
+00:10–00:16
+Available times are offered, and the caller chooses a slot.
+
+00:16–00:22
+The workflow validates the details, checks availability again, and creates the booking.
+
+00:22–00:27
+Your team receives an email alert, with call-report logging for follow-up.
+
+00:27–00:30
+Connect. Automate. Deliver. Build with Manny.
+
+This video uses designed interface screens and sample data. It is an illustrative workflow demo, not a recorded live call.
