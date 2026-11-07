@@ -1,0 +1,10 @@
+FACEBOOK WORKFLOW — NEON EXECUTION SHOWCASE
+15 seconds / 1080x1920 / 30 fps
+Male narration: Kokoro am_michael.
+
+00:00–00:03 One message. Four nodes. Watch this.
+00:03–00:07 A message arrives. The agent checks the business knowledge.
+00:07–00:11 That context becomes a relevant AI reply.
+00:11–00:15 Then the Facebook Graph API sends it back.
+
+Illustrative execution visualization with sample data, not a live n8n screen recording. The four nodes summarize the workflow stages. Neon trails and activation tones are timed to each connection/node. Key content reserves the right 220 px, top 240 px, and bottom 450 px for platform UI; check the platform upload preview, as overlays vary. No promotional CTA.
