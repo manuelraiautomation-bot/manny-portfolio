@@ -1,0 +1,9 @@
+FACEBOOK WORKFLOW SHOWCASE — 15 SECONDS
+Male AI voice: Kokoro am_michael.
+
+00:00–00:03 A Facebook enquiry is received.
+00:03–00:07 The agent checks its business knowledge.
+00:07–00:11 It prepares an answer based on that information.
+00:11–00:15 The Facebook Graph API sends the reply back.
+
+Vertical 1080x1920. Key content is confined to the left/central area, reserving 220 px on the right, 240 px at the top, and at least 450 px at the bottom. Social-platform overlays vary, so preview the upload before posting. Designed screens and sample data illustrate the workflow; no live Facebook account was accessed.
