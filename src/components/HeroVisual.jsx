@@ -5,7 +5,7 @@ import "./HeroVisual.css";
 import { PROJECTS, PROJECT_CATEGORIES, getCategoryAnchor } from "../data/projects.js";
 
 const CATEGORY_ICONS = [Bot, Workflow, FileText, ShieldCheck];
-const MODULES = PROJECT_CATEGORIES.map((label, index) => ({
+const MODULES = PROJECT_CATEGORIES.filter(category => category !== "Website Design").map((label, index) => ({
   label,
   Icon: CATEGORY_ICONS[index],
   count: PROJECTS.filter((project) => project.category === label).length,

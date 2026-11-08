@@ -4,6 +4,7 @@ import About from "./components/About.jsx";
 import Experience from "./components/Experience.jsx";
 import ServiceOffers from "./components/ServiceOffers.jsx";
 import Services from "./components/Services.jsx";
+import WebsiteShowcase from "./components/WebsiteShowcase.jsx";
 import Portfolio from "./components/Portfolio.jsx";
 import Skills from "./components/Skills.jsx";
 import Stats from "./components/Stats.jsx";
@@ -20,6 +21,7 @@ export default function App() {
         <Hero />
         <Portfolio featured />
         <ServiceOffers />
+        <WebsiteShowcase />
         <About />
         <Experience />
         <Services />

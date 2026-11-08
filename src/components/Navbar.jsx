@@ -9,6 +9,7 @@ const LINKS = [
   "Experience",
   "Services",
   "Portfolio",
+  "Websites",
   "Skills",
   "Testimonials",
   "Contact",

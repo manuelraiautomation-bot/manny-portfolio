@@ -241,6 +241,8 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
               {project.title}
             </h3>
 
+            {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-accent-tealDeep px-5 py-3 text-sm font-semibold text-white">Open website sample ↗</a>}
+
             <div className="mt-6 grid gap-5">
               <div className="flex gap-3">
                 <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-red-500/15 text-red-400">
@@ -318,7 +320,7 @@ export default function Portfolio({ featured = false }) {
             {featured ? "FEATURED PROJECTS" : "SELECTED WORK"}
           </div>
           <h2 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white lg:text-5xl">
-            {featured ? "Practical automation." : "Workflows I’ve"}{" "}
+            {featured ? "Practical automation." : "Projects I’ve"}{" "}
             <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">

@@ -1,4 +1,4 @@
-import { PhoneCall, Bot, Workflow, Plug, Check, ArrowUpRight } from "lucide-react";
+import { PhoneCall, Bot, Workflow, Plug, Globe2, Check, ArrowUpRight } from "lucide-react";
 
 const OFFERS = [
   {
@@ -28,6 +28,13 @@ const OFFERS = [
     description: "Keep enquiries and follow-ups connected across your CRM and business tools.",
     deliverables: ["GHL or other CRM connections scoped to your process", "API and webhook integrations between agreed tools", "Field mapping, end-to-end checks, and handoff notes"],
     fit: "Businesses coordinating leads across multiple tools",
+  },
+  {
+    icon: Globe2,
+    title: "Business Website Design",
+    description: "Present your business clearly online with a brand-focused website designed for your customers and devices.",
+    deliverables: ["Responsive page design with clear service or product information", "Contact links, location details, and accessible navigation", "Search-friendly structure and editable business content"],
+    fit: "Local and international businesses building their online presence",
   },
 ];
 

@@ -31,7 +31,7 @@ export default function Stats() {
           ))}
         </div>
         <p className="mt-8 border-t border-light-border pt-4 text-xs leading-relaxed text-light-muted dark:border-white/10 dark:text-white/60">
-          I’ve built {WORKFLOWS_BUILT} workflows; {PROJECTS.length} selected projects are showcased here. The showcased work spans n8n, Make, and Zapier.
+          I’ve built {WORKFLOWS_BUILT} workflows; {PROJECTS.length} selected projects are showcased here. The automation examples span n8n, Make, and Zapier.
         </p>
       </div>
     </section>

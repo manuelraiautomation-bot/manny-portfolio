@@ -113,11 +113,22 @@ export const PROJECTS = [
     benefit:
       "Keeps failure details in a central log and sends an email alert, giving the team the context and execution reference needed to investigate.",
   },
+  {
+    category: "Website Design",
+    title: "CHILL Treats — Dessert Shop Website",
+    summary: "A responsive purple-branded website concept with a filterable menu, map, and contact links.",
+    tags: ["HTML", "CSS", "JAVASCRIPT"],
+    image: "/images/portfolio/chill-treats-website.png",
+    demoUrl: "/samples/chill-treats/",
+    pain: "A local dessert shop needs a clear, mobile-friendly way to present its brand, menu categories, location, and contact options beyond a social media page.",
+    solution: "I designed and built a standalone HTML, CSS, and JavaScript concept with purple, yellow, and pink branding, a filterable dessert menu, gallery placeholders, a Google Maps address search, and phone/Facebook contact links. Business and menu data are kept in one editable file.",
+    benefit: "Demonstrates a responsive business website suitable for local or international audiences. This is a portfolio concept, not a verified client launch. Product images are AI-generated samples; official photos, prices, availability, and hours need confirmation.",
+  },
 ];
 
 export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0]];
 
-export const PROJECT_CATEGORIES = ["AI Agents", "Business Operations", "Content", "Monitoring"];
+export const PROJECT_CATEGORIES = ["AI Agents", "Business Operations", "Content", "Monitoring", "Website Design"];
 
 export function getCategoryAnchor(category) {
   return category === "All" ? "portfolio" : `portfolio-${category.toLowerCase().replace(/\s+/g, "-")}`;
