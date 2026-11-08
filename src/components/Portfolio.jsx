@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import {
   Search,
+  RotateCcw,
   ShieldAlert,
   X,
   ChevronLeft,
@@ -9,6 +10,10 @@ import {
   Lightbulb,
   TrendingUp,
 } from "lucide-react";
+
+import FeaturedVideoCard from "./FeaturedVideoCard.jsx";
+import FeaturedVideoDialog from "./FeaturedVideoDialog.jsx";
+import FeaturedWorkflowPreview from "./FeaturedWorkflowPreview.jsx";
 
 import { PROJECTS, FEATURED_PROJECTS, PROJECT_CATEGORIES, getCategoryAnchor, getCategoryFromHash } from "../data/projects.js";
 
@@ -24,7 +29,7 @@ function useReducedMotion() {
   return reduced;
 }
 
-function ProjectCard({ project, onOpen, reducedMotion }) {
+function ProjectCard({ project, onOpen, reducedMotion, featuredIndex }) {
   const cardRef = useRef(null);
   const wrapRef = useRef(null);
   const imgRef = useRef(null);
@@ -72,13 +77,14 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
       onClick={() => onOpen(project)}
       onMouseMove={handleCardMouseMove}
       onMouseLeave={handleCardMouseLeave}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-light-border bg-light-surface text-left shadow-sm transition-colors hover:border-accent-teal/40 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none"
+      className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-light-border bg-light-surface text-left shadow-sm transition-colors hover:border-accent-teal/40 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none"
     >
       <div
         ref={glowRef}
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300"
       />
+      {featuredIndex !== undefined ? <FeaturedWorkflowPreview index={featuredIndex} /> : (
       <div
         ref={wrapRef}
         onMouseMove={handleMouseMove}
@@ -107,6 +113,7 @@ function ProjectCard({ project, onOpen, reducedMotion }) {
           </div>
         )}
       </div>
+      )}
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-2 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
@@ -280,6 +287,28 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
 }
 
 export default function Portfolio({ featured = false }) {
+  const sectionRef = useRef(null);
+  const [videoIndex, setVideoIndex] = useState(null);
+  const featuredStyle = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("featuredStyle") === "neon" ? "neon" : "video";
+  const [animationKey, setAnimationKey] = useState(0);
+  useEffect(() => {
+    if (!featured) return;
+    const cards = sectionRef.current.querySelectorAll("[data-featured-card]");
+    if (!("IntersectionObserver" in window)) {
+      cards.forEach(card => card.classList.add("featured-revealed"));
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("featured-revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.15});
+    cards.forEach(card => observer.observe(card));
+    return () => observer.disconnect();
+  }, [featured, animationKey]);
   const [category, setCategory] = useState(() => typeof window === "undefined" ? "All" : getCategoryFromHash(window.location.hash));
   const projects = useMemo(() => featured ? FEATURED_PROJECTS : category === "All" ? PROJECTS : PROJECTS.filter((project) => project.category === category), [featured, category]);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -308,7 +337,7 @@ export default function Portfolio({ featured = false }) {
   const activeProject = activeIndex === null ? null : projects[activeIndex];
 
   return (
-    <section id={featured ? "featured-work" : "portfolio"} className="relative overflow-hidden">
+    <section ref={sectionRef} id={featured ? "featured-work" : "portfolio"} className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute right-0 top-0 h-[24rem] w-[24rem] rounded-full bg-accent-teal/10 opacity-70 blur-[120px] dark:opacity-100" />
       </div>
@@ -324,7 +353,7 @@ export default function Portfolio({ featured = false }) {
             <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            {featured ? "Explore three examples of how I connect tools to handle bookings, enquiries, and customer conversations. Select a project for the details." : `Explore all ${PROJECTS.length} projects. Select a card to read the problem, approach, and benefit. Where available, enlarge the workflow screenshot.`}
+            {featured ? (featuredStyle === "video" ? "Watch a 30-second walkthrough of each featured project, or explore the full case study." : "Explore three examples of how I connect tools to handle bookings, enquiries, and customer conversations. Select a project for the details.") : `Explore all ${PROJECTS.length} projects. Select a card to read the problem, approach, and benefit. Where available, enlarge the workflow screenshot.`}
           </p>
         </div>
 
@@ -344,19 +373,17 @@ export default function Portfolio({ featured = false }) {
             <p role="status" aria-live="polite" aria-atomic="true" className="mt-5 text-center text-sm text-light-muted dark:text-white/65">Showing {projects.length} {projects.length === 1 ? "project" : "projects"}{category === "All" ? " across all categories" : ` in ${category}`}</p>
           </div>
         )}
-        <div id={featured ? undefined : "portfolio-projects"} className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              reducedMotion={reducedMotion}
-              onOpen={() => setActiveIndex(i)}
-            />
-          ))}
-
+        {featured && <div className="featured-replay mt-7 flex justify-center"><button type="button" onClick={() => setAnimationKey(value => value + 1)} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-light-border px-4 py-2 text-xs font-medium text-light-muted hover:bg-light-surface dark:border-white/15 dark:text-white/65 dark:hover:bg-white/5"><RotateCcw size={13} aria-hidden="true" /> {featuredStyle === "video" ? "Replay card reveals" : "Replay workflow animations"}</button></div>}
+        <div key={featured ? animationKey : "portfolio-grid"} id={featured ? undefined : "portfolio-projects"} className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => {
+            const card = featured && featuredStyle === "video" ? <FeaturedVideoCard key={project.title} project={project} index={i} onWatch={() => setVideoIndex(i)} onRead={() => setActiveIndex(i)} /> : <ProjectCard key={project.title} project={project} reducedMotion={reducedMotion} featuredIndex={featured ? i : undefined} onOpen={() => setActiveIndex(i)} />;
+            return featured ? <div key={project.title} data-featured-card style={{"--reveal-delay":`${i*140}ms`}}>{card}</div> : card;
+          })}
         </div>
 
         {featured && <div className="mt-8 text-center"><a href="#portfolio" className="inline-flex rounded-full border border-light-border px-6 py-3 text-sm font-semibold text-light-text hover:bg-light-surface dark:border-white/20 dark:text-white dark:hover:bg-white/5">Explore all {PROJECTS.length} projects →</a></div>}
+
+        {featured && videoIndex !== null && <FeaturedVideoDialog project={projects[videoIndex]} index={videoIndex} onClose={() => setVideoIndex(null)} />}
 
         {activeProject && (
           <CaseStudyModal project={activeProject} onClose={close} onPrev={prev} onNext={next} />
