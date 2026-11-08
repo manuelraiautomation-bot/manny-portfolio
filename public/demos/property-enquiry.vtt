@@ -1,0 +1,19 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.000
+One property enquiry. Every detail connected.
+
+00:00:04.000 --> 00:00:10.000
+A webhook captures the request and routes the enquiry with its property reference.
+
+00:00:10.000 --> 00:00:16.000
+The workflow creates an Asana task, linking viewing information and relevant property files.
+
+00:00:16.000 --> 00:00:22.000
+Google Drive and Sheets supply documents and viewing links for the next step.
+
+00:00:22.000 --> 00:00:27.000
+New follow-up notes are merged into the existing task, keeping its history.
+
+00:00:27.000 --> 00:00:30.000
+Less chasing. Clearer follow-ups.
