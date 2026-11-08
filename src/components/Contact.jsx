@@ -10,11 +10,10 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-// Your live Calendly event
-const CALENDLY_URL = "https://calendly.com/manuelr-aiautomation/your-automation-assistant";
+import { CALENDLY_URL, CONTACT_EMAIL } from "../data/contact.js";
 
 const CONTACT_INFO = [
-  { icon: Mail, label: "Email", value: "manuelr.aiautomation@gmail.com" },
+  { icon: Mail, label: "Email", value: CONTACT_EMAIL },
   { icon: MapPin, label: "Based in", value: "Philippines · Remote-first" },
   { icon: Clock3, label: "Availability", value: "Open for new projects" },
 ];

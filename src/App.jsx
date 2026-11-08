@@ -1,3 +1,5 @@
+import { useState } from "react";
+import InquiryDialog from "./components/InquiryDialog.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
@@ -13,6 +15,7 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 
 export default function App() {
+  const [inquiryTopic, setInquiryTopic] = useState(null);
   return (
     <div className="min-h-screen bg-light-bg transition-colors duration-300 dark:bg-base-950">
       <a href="#main-content" className="sr-only fixed left-4 top-4 z-[200] rounded-lg bg-light-surface p-3 text-light-text focus:not-sr-only">Skip to content</a>
@@ -20,8 +23,8 @@ export default function App() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <Portfolio featured />
-        <ServiceOffers />
-        <WebsiteShowcase />
+        <ServiceOffers onDiscuss={setInquiryTopic} />
+        <WebsiteShowcase onDiscuss={setInquiryTopic} />
         <About />
         <Experience />
         <Services />
@@ -32,6 +35,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      {inquiryTopic && <InquiryDialog topic={inquiryTopic} onClose={() => setInquiryTopic(null)} />}
     </div>
   );
 }

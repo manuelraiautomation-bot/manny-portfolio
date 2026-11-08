@@ -38,7 +38,7 @@ const OFFERS = [
   },
 ];
 
-export default function ServiceOffers() {
+export default function ServiceOffers({ onDiscuss }) {
   return (
     <section id="services" aria-labelledby="services-heading" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-2xl text-center">
@@ -59,7 +59,7 @@ export default function ServiceOffers() {
               {deliverables.map((item) => <li key={item} className="flex gap-3 text-sm leading-relaxed text-light-muted dark:text-white/70"><Check size={17} aria-hidden="true" className="mt-1 shrink-0 text-accent-tealDeep dark:text-accent-teal" /><span>{item}</span></li>)}
             </ul>
             <p className="mb-6 mt-6 text-xs leading-relaxed text-light-muted dark:text-white/60"><span className="font-semibold">Best for:</span> {fit}</p>
-            <a href="#contact" className="mt-auto inline-flex items-center gap-2 self-start rounded-full border border-light-border px-5 py-3 text-sm font-semibold text-light-text hover:bg-light-surfaceMuted dark:border-white/20 dark:text-white dark:hover:bg-white/5" aria-label={`Discuss ${title}`}>Discuss this service <ArrowUpRight size={16} aria-hidden="true" /></a>
+            <button type="button" onClick={() => onDiscuss(title)} aria-haspopup="dialog" className="mt-auto inline-flex items-center gap-2 self-start rounded-full border border-light-border px-5 py-3 text-sm font-semibold text-light-text hover:bg-light-surfaceMuted dark:border-white/20 dark:text-white dark:hover:bg-white/5" aria-label={`Discuss ${title}`}>Discuss this service <ArrowUpRight size={16} aria-hidden="true" /></button>
           </article>
         ))}
       </div>

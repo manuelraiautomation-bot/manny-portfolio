@@ -1,6 +1,6 @@
 import { Globe2, ArrowUpRight, Check, Smartphone } from "lucide-react";
 
-export default function WebsiteShowcase() {
+export default function WebsiteShowcase({ onDiscuss }) {
   return (
     <section id="websites" aria-labelledby="websites-heading" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -11,7 +11,7 @@ export default function WebsiteShowcase() {
           <ul className="mt-6 space-y-3 text-sm text-light-muted dark:text-white/70">
             {["Layouts made for phones, tablets, and desktop", "Easy-to-update menus, services, and business information", "Accessible navigation, search-friendly structure, and contact links"].map(item => <li key={item} className="flex gap-3"><Check size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-accent-tealDeep dark:text-accent-teal" /><span>{item}</span></li>)}
           </ul>
-          <div className="mt-8 flex flex-wrap gap-3"><a href="/samples/chill-treats/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent-tealDeep px-6 py-3 text-sm font-semibold text-white">View website sample <ArrowUpRight size={16} aria-hidden="true" /></a><a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-light-border px-6 py-3 text-sm font-semibold text-light-text hover:bg-light-surface dark:border-white/20 dark:text-white dark:hover:bg-white/5">Discuss your website</a></div>
+          <div className="mt-8 flex flex-wrap gap-3"><a href="/samples/chill-treats/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-accent-tealDeep px-6 py-3 text-sm font-semibold text-white">View website sample <ArrowUpRight size={16} aria-hidden="true" /></a><button type="button" onClick={() => onDiscuss("Website design & development")} aria-haspopup="dialog" className="inline-flex items-center gap-2 rounded-full border border-light-border px-6 py-3 text-sm font-semibold text-light-text hover:bg-light-surface dark:border-white/20 dark:text-white dark:hover:bg-white/5">Discuss your website</button></div>
         </div>
         <article className="min-w-0 overflow-hidden rounded-3xl border border-light-border bg-light-surface shadow-sm dark:border-white/10 dark:bg-base-900/60">
           <div className="flex items-center gap-2 border-b border-light-border px-5 py-3 dark:border-white/10"><span className="h-2 w-2 rounded-full bg-rose-400" /><span className="h-2 w-2 rounded-full bg-amber-400" /><span className="h-2 w-2 rounded-full bg-emerald-400" /><span className="ml-2 min-w-0 truncate text-xs text-light-muted dark:text-white/60">CHILL Treats · Website concept</span></div>
