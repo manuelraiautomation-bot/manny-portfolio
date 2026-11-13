@@ -5,7 +5,7 @@ const STEPS = [
   {
     icon: Search,
     title: "Discovery Call",
-    desc: "We map your current workflow bottlenecks and identify the highest-impact automation opportunities in your business.",
+    desc: "I map your current workflow bottlenecks and identify the highest-impact automation opportunities in your business.",
   },
   {
     icon: BookOpen,
@@ -15,7 +15,7 @@ const STEPS = [
   {
     icon: Settings,
     title: "Build & Test",
-    desc: "I build and rigorously test every workflow before it touches your real business. You see it working before we go live.",
+    desc: "I build and rigorously test every workflow before it touches your real business. You see it working before I launch it.",
   },
   {
     icon: Rocket,
@@ -112,7 +112,7 @@ export default function Services() {
           HOW IT WORKS
         </div>
         <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-light-text dark:text-white sm:text-4xl lg:text-5xl">
-          Our 5-Step Process
+          My 5-Step Process
         </h2>
       </div>
 
