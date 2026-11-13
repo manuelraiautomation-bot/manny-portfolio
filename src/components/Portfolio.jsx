@@ -1,3 +1,4 @@
+import ProjectHighlights from "./ProjectHighlights.jsx";
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import {
   Search,
@@ -128,9 +129,8 @@ function ProjectCard({ project, onOpen, reducedMotion, featuredIndex }) {
         <h3 className="text-sm font-semibold text-light-text dark:text-white">
           {project.title}
         </h3>
-        <p className="mt-1.5 line-clamp-2 text-xs text-light-muted dark:text-white/55">
-          {project.summary ?? project.pain}
-        </p>
+        <ProjectHighlights project={project} />
+        <span className="mt-auto block pt-5 text-xs font-semibold text-accent-tealDeep dark:text-accent-tealLight">View Case Study →</span>
       </div>
     </button>
   );
@@ -356,7 +356,7 @@ export default function Portfolio({ featured = false }) {
             <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            {featured ? (featuredStyle === "video" ? "Watch project walkthroughs or explore the case studies, including Lanie, a phone-rental management app." : "Explore selected automation and app projects. Select a project for its case study.") : `Explore all ${PROJECTS.length} projects. Select a card to read the problem, approach, and benefit. Where available, enlarge the workflow screenshot.`}
+            {featured ? (featuredStyle === "video" ? "Watch project walkthroughs or explore the case studies, including Lanie, a phone-rental management app." : "Explore selected automation and app projects. Select a project for its case study.") : `Explore all ${PROJECTS.length} projects. See the pain, solution, and benefit at a glance. Select View Case Study for the full explanation.`}
           </p>
         </div>
 

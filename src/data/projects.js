@@ -1,5 +1,6 @@
 export const PROJECTS = [
   {
+    highlights: {"pain": "Messages outside business hours can go unanswered.", "solution": "An n8n AI agent answers enquiries using business knowledge.", "benefit": "Helps keep Facebook enquiries moving when the team is away."},
     category: "AI Agents",
     title: "AI Agent for Facebook",
     summary: "Answers Facebook enquiries using business knowledge through an n8n AI agent.",
@@ -9,9 +10,10 @@ export const PROJECTS = [
     solution:
       "I built an n8n AI agent that reads incoming messages, references a knowledge document held in memory, and replies automatically through the Facebook Graph API in real time.",
     benefit:
-      "Response time dropped from hours to seconds, and the page now stays responsive 24/7 without hiring extra support staff.",
+      "Helps the page respond to routine enquiries outside business hours while reducing the replies the team needs to handle manually.",
   },
   {
+    highlights: {"pain": "Videos are posted once, then left unused.", "solution": "A Zapier workflow turns recordings into blog and social content.", "benefit": "Reuse one recording across several channels with less manual work."},
     category: "Content",
     title: "AI Content Repurposing",
     tags: ["ZAPIER", "CONTENT AI"],
@@ -23,6 +25,7 @@ export const PROJECTS = [
       "One video now produces multiple ready-to-publish pieces of content automatically, multiplying reach without extra editing work.",
   },
   {
+    highlights: {"pain": "Repeated Messenger FAQs take up support time.", "solution": "A knowledge-based AI assistant includes a backup model.", "benefit": "Handle routine questions and provide a fallback if a model fails."},
     category: "AI Agents",
     title: "AI Facebook Messenger Knowledge Assistant",
     tags: ["N8N", "SUPPORT AI"],
@@ -31,9 +34,10 @@ export const PROJECTS = [
     solution:
       "I built an n8n support agent that pulls answers from a knowledge base, uses Gemini 2.5 as the primary model with a Groq Llama backup for redundancy, and keeps conversation memory across messages.",
     benefit:
-      "Customers get instant, accurate answers around the clock, with near-zero downtime thanks to automatic model failover.",
+      "Helps answer routine customer questions using business knowledge and provides a backup model when the primary model is unavailable.",
   },
   {
+    highlights: {"pain": "Searching jobs and tailoring applications takes time.", "solution": "A Slack-triggered workflow finds listings and drafts tailored applications.", "benefit": "Spend less time on repetitive searches and first drafts."},
     category: "Business Operations",
     title: "AI Job Scraper + Resume Optimizer",
     tags: ["N8N", "AI AUTOMATION"],
@@ -42,9 +46,10 @@ export const PROJECTS = [
     solution:
       "I built a Slack-triggered automation that searches job listings, validates matches with AI, then generates a tailored resume and proposal draft for each one.",
     benefit:
-      "What used to take an hour per application now happens in minutes, with drafts delivered straight to Slack and Gmail.",
+      "Reduces repetitive job searches and application drafting, with drafts delivered to Slack and Gmail for review.",
   },
   {
+    highlights: {"pain": "Email attachments get buried in the inbox.", "solution": "A Make workflow summarizes, files, and logs incoming attachments.", "benefit": "Find files and their summaries in one organized record."},
     category: "Business Operations",
     title: "Email Attachment Sorting, Log & Summary",
     tags: ["MAKE", "GEMINI"],
@@ -56,6 +61,7 @@ export const PROJECTS = [
       "Every attachment is now automatically filed, searchable, and summarized — no more digging through inboxes.",
   },
   {
+    highlights: {"pain": "Finance records need repeated updates across tools.", "solution": "A Make integration connects Asana tasks, Xero, and Google Sheets.", "benefit": "Reduce manual re-entry and keep related records together."},
     category: "Business Operations",
     title: "Xero Bank Statement to Asana Automation",
     tags: ["MAKE", "FINANCE OPS"],
@@ -67,6 +73,7 @@ export const PROJECTS = [
       "Financial data now stays in sync across all three tools without manual re-entry, cutting bookkeeping admin time significantly.",
   },
   {
+    highlights: {"pain": "Regular short-form video production takes repeated effort.", "solution": "An n8n pipeline connects AI video generation and publishing.", "benefit": "Reduce repetitive production and upload steps."},
     category: "Content",
     title: "YT Shorts & FB Reels Video Generation",
     tags: ["N8N", "VIDEO AI"],
@@ -78,6 +85,7 @@ export const PROJECTS = [
       "A content channel now publishes new short-form video on a schedule, with zero manual editing or uploading.",
   },
   {
+    highlights: {"pain": "Appointments and caller messages interrupt the team.", "solution": "A Vapi receptionist checks calendars and handles booking workflows.", "benefit": "Keep bookings, messages, and follow-ups connected."},
     category: "AI Agents",
     title: "AI Voice Receptionist & Appointment Booking",
     summary: "Checks calendar availability, books and reschedules appointments, and records caller messages.",
@@ -90,6 +98,7 @@ export const PROJECTS = [
       "Brings scheduling, caller messages, and call records into one connected workflow, with replies for missing booking details, unavailable slots, and bookings that cannot be found.",
   },
   {
+    highlights: {"pain": "Property enquiries and follow-ups are scattered.", "solution": "An n8n workflow connects enquiry records, files, and Asana tasks.", "benefit": "Retrieve property details and manage next steps in one workflow."},
     category: "Business Operations",
     title: "Property Enquiry & Asana Automation",
     summary: "Connects property enquiries, viewing links, and files with Asana follow-up tasks.",
@@ -102,6 +111,7 @@ export const PROJECTS = [
       "Connects enquiry records, property information, and Asana follow-ups so the team can retrieve details and manage next steps through one automation entry point.",
   },
   {
+    highlights: {"pain": "Workflow failures can go unnoticed.", "solution": "An n8n error handler logs failures and sends email alerts.", "benefit": "Get the execution details needed to investigate issues."},
     category: "Monitoring",
     title: "Error Handler — Log + Email Alert",
     image: "/images/portfolio/error-handler-log-email-alert.png",
@@ -114,6 +124,7 @@ export const PROJECTS = [
       "Keeps failure details in a central log and sends an email alert, giving the team the context and execution reference needed to investigate.",
   },
   {
+    highlights: {"pain": "A dessert shop needs a clear mobile-friendly presence.", "solution": "A branded website concept presents its menu, location, and contacts.", "benefit": "Show visitors what the business offers and how to reach it."},
     category: "Website Design",
     title: "CHILL Treats — Dessert Shop Website",
     summary: "A responsive purple-branded website concept with a filterable menu, map, and contact links.",
@@ -125,6 +136,7 @@ export const PROJECTS = [
     benefit: "Demonstrates a responsive business website suitable for local or international audiences. This is a portfolio concept, not a verified client launch. Product images are AI-generated samples; official photos, prices, availability, and hours need confirmation.",
   },
   {
+    highlights: {"pain": "Rider stock, sales, and remittances are hard to reconcile.", "solution": "An owner-and-rider app connects requests, reports, and collections.", "benefit": "See remaining stock and outstanding remittances in one place."},
     category: "Business Operations",
     title: "MealPilot — Meal Distribution App",
     summary: "A phone-friendly workspace for meal orders, rider inventory, daily sales, and remittance tracking.",
@@ -137,6 +149,7 @@ export const PROJECTS = [
     benefit: "Brings the daily operation into one workspace so the owner can review stock, rider sales, and outstanding remittances, while riders can submit their reports from a phone. The portfolio demo uses fictional data in this browser only; it does not connect to the production app.",
   },
   {
+    highlights: {"pain": "Manual timers complicate rental handovers and payments.", "solution": "A shared app tracks rentals, saved time, transfers, and collections.", "benefit": "Preserve customer time and payments across rental handovers."},
     category: "Business Operations",
     title: "Lanie — Phone Rental Management App",
     summary: "Phone-rental management for a local business, with shared timers, saved customer time, phone transfers, and collection tracking.",

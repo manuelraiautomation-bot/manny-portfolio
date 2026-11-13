@@ -1,3 +1,4 @@
+import ProjectHighlights from "./ProjectHighlights.jsx";
 import { Play, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
 
 export const FEATURED_DEMOS = [
@@ -20,7 +21,7 @@ export default function FeaturedVideoCard({project,index,onWatch,onRead}) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap gap-1.5">{project.tags.map(tag=><span key={tag} style={project.brand === "lanie" ? {color:"#173f31",background:"#e6ebd6"} : undefined} className="rounded-full bg-accent-teal/10 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-accent-tealDeep dark:text-accent-tealLight">{tag}</span>)}</div>
         <h3 style={project.brand === "lanie" ? {color:"#173f31"} : undefined} className="mt-3 font-display text-base font-semibold leading-snug text-light-text dark:text-white">{project.title}</h3>
-        <p style={project.brand === "lanie" ? {color:"#4a6251"} : undefined} className="mt-2 text-sm leading-relaxed text-light-muted dark:text-white/65">{project.summary}</p>
+        <ProjectHighlights project={project} />
         <p style={project.brand === "lanie" ? {color:"#4a6251"} : undefined} className="mt-3 inline-flex items-center gap-1.5 text-[10px] text-light-muted dark:text-white/50">{demo.sound?<Volume2 size={12} aria-hidden="true"/>:<VolumeX size={12} aria-hidden="true"/>}{project.walkthrough ? "English walkthrough · Demo data" : demo.sound?"Narration · Music · Sound FX · Illustrative demo":"Silent walkthrough · Illustrative demo"}</p>
         <div className="mt-auto flex flex-wrap items-center gap-4 pt-5"><button type="button" onClick={onWatch} aria-haspopup="dialog" aria-label={`Watch walkthrough: ${project.title}`} style={project.brand === "lanie" ? {background:"#173f31",color:"#f7f7ef"} : undefined} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-accent-tealDeep px-4 py-2.5 text-xs font-semibold text-white"><Play size={13} fill="currentColor" aria-hidden="true"/> {project.walkthrough ? "Watch Walkthrough" : "Watch demo"}</button><button type="button" onClick={onRead} aria-haspopup="dialog" aria-label={`Read case study: ${project.title}`} className="inline-flex min-h-11 items-center gap-1 text-xs font-semibold text-light-muted underline-offset-4 hover:underline dark:text-white/70" style={project.brand === "lanie" ? {color:"#173f31"} : undefined}>View Case Study <ArrowUpRight size={13} aria-hidden="true"/></button></div>
       </div>
