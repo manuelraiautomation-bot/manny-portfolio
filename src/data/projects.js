@@ -124,9 +124,59 @@ export const PROJECTS = [
     solution: "I designed and built a standalone HTML, CSS, and JavaScript concept with purple, yellow, and pink branding, a filterable dessert menu, gallery placeholders, a Google Maps address search, and phone/Facebook contact links. Business and menu data are kept in one editable file.",
     benefit: "Demonstrates a responsive business website suitable for local or international audiences. This is a portfolio concept, not a verified client launch. Product images are AI-generated samples; official photos, prices, availability, and hours need confirmation.",
   },
+  {
+    category: "Business Operations",
+    title: "MealPilot — Meal Distribution App",
+    summary: "A phone-friendly workspace for meal orders, rider inventory, daily sales, and remittance tracking.",
+    tags: ["NEXT.JS", "SUPABASE", "ANDROID / PWA"],
+    image: "/images/portfolio/mealpilot-app.png",
+    demoUrl: "/samples/mealpilot/",
+    demoLabel: "Try MealPilot Demo",
+    pain: "Managing meal distribution across an owner and multiple riders can leave orders, stock, sold meals, commissions, and cash remittances scattered across chats and spreadsheets.",
+    solution: "I built MealPilot with separate owner and rider workspaces for meal requests, allocations, end-of-shift reports, sales, returns, commissions, and remittances. It tracks borrowed change funds separately from sales and provides reports and CSV exports through a responsive web/PWA app and an Android build.",
+    benefit: "Brings the daily operation into one workspace so the owner can review stock, rider sales, and outstanding remittances, while riders can submit their reports from a phone. The portfolio demo uses fictional data in this browser only; it does not connect to the production app.",
+  },
+  {
+    category: "Business Operations",
+    title: "Lanie — Phone Rental Management App",
+    summary: "Phone-rental management for a local business, with shared timers, saved customer time, phone transfers, and collection tracking.",
+    tags: ["NEXT.JS", "SUPABASE", "CAPACITOR"],
+    image: "/images/portfolio/lanie-walkthrough.png",
+    demoUrl: "/samples/lanie/",
+    demoLabel: "Try Lanie Demo",
+    brand: "lanie",
+    walkthrough: {
+      src: "/demos/lanie-walkthrough.mp4",
+      poster: "/images/portfolio/lanie-walkthrough.png",
+      captions: "/demos/lanie-walkthrough.vtt",
+      captionsDownload: "/demos/lanie-walkthrough.srt",
+      duration: "2:57",
+      sound: true,
+      description: "English walkthrough with demo data and AI voice narration. Production access is suspended; use the separate portfolio demo to explore sample workflows.",
+    },
+    pain: "A local phone-rental business charging ₱10 per hour needed an alternative to manual timers and handwritten records for rentals, customers, payments, and collections.",
+    solution: "I designed the interface, implemented the rental and payment workflows, connected the shared backend, packaged the Android app, and deployed the website. Lanie brings customer records, countdowns, extensions, partial payments, saved unused time, phone transfers, and collections into a shared dashboard.",
+    benefit: "Helps the family manage renter handovers, preserve unused customer time, avoid duplicate charges, and monitor actual collections.",
+    status: "Built and deployed. Production access is currently suspended. This is a case study with a separate fictional-data demo, not a working public production service.",
+    platforms: "Responsive web app for phones and tablets, plus an installable Android APK.",
+    technology: "Next.js, React, TypeScript, Supabase/PostgreSQL, Capacitor, and Vercel.",
+    features: [
+      "Saved customers: add a customer once and find their name for future rentals.",
+      "Rental countdowns: choose a duration, track remaining time, and add extensions.",
+      "Flexible payments: record payments before or after use, including partial payments and unpaid balances.",
+      "Saved time: pause a rental, release the phone, and preserve unused time under the customer's name.",
+      "Resume anywhere: resume saved time on an available phone without charging again for previously paid time.",
+      "Phone transfers: move a running rental while preserving remaining time and payments.",
+      "Phone availability: mark devices as charging or needing service, then make them available again.",
+      "Collection dashboard: today, yesterday, this week, last week, and this month using Philippine time.",
+      "Family access: up to five devices share updates while online using a private family code.",
+      "Rental alerts: one designated device handles alarms. Android supports scheduled notifications; iPhone/iPad web alarms require an awake screen.",
+      "Financial records: refunds, payment corrections, activity history, and downloadable backups.",
+    ],
+  },
 ];
 
-export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0]];
+export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0], PROJECTS.find(project => project.brand === "lanie")];
 
 export const PROJECT_CATEGORIES = ["AI Agents", "Business Operations", "Content", "Monitoring", "Website Design"];
 

@@ -248,7 +248,10 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
               {project.title}
             </h3>
 
-            {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-accent-tealDeep px-5 py-3 text-sm font-semibold text-white">Open website sample ↗</a>}
+            {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-accent-tealDeep px-5 py-3 text-sm font-semibold text-white">{project.demoLabel || "Open website sample"} ↗</a>}
+            {project.walkthrough && <a href={project.walkthrough.src} target="_blank" rel="noopener noreferrer" className="ml-3 mt-5 inline-flex rounded-full border border-[#c99e4f] px-5 py-3 text-sm font-semibold text-[#f3d18d]">Watch Walkthrough ↗</a>}
+            {project.status && <p className="mt-5 rounded-xl border border-[#c99e4f]/50 bg-[#173f31] p-4 text-sm text-[#f7f7ef]">{project.status}</p>}
+            {project.features && <section className="mt-6 rounded-xl bg-[#f7f7ef] p-5 text-[#203e32]"><h4 className="font-semibold">Main features</h4><ul className="mt-3 list-disc space-y-2 pl-5 text-sm">{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul><h4 className="mt-5 font-semibold">Platforms</h4><p className="mt-2 text-sm">{project.platforms}</p><h4 className="mt-5 font-semibold">Technology</h4><p className="mt-2 text-sm">{project.technology}</p></section>}
 
             <div className="mt-6 grid gap-5">
               <div className="flex gap-3">
@@ -353,7 +356,7 @@ export default function Portfolio({ featured = false }) {
             <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            {featured ? (featuredStyle === "video" ? "Watch a 30-second walkthrough of each featured project, or explore the full case study." : "Explore three examples of how I connect tools to handle bookings, enquiries, and customer conversations. Select a project for the details.") : `Explore all ${PROJECTS.length} projects. Select a card to read the problem, approach, and benefit. Where available, enlarge the workflow screenshot.`}
+            {featured ? (featuredStyle === "video" ? "Watch project walkthroughs or explore the case studies, including Lanie, a phone-rental management app." : "Explore selected automation and app projects. Select a project for its case study.") : `Explore all ${PROJECTS.length} projects. Select a card to read the problem, approach, and benefit. Where available, enlarge the workflow screenshot.`}
           </p>
         </div>
 
@@ -374,9 +377,9 @@ export default function Portfolio({ featured = false }) {
           </div>
         )}
         {featured && <div className="featured-replay mt-7 flex justify-center"><button type="button" onClick={() => setAnimationKey(value => value + 1)} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-light-border px-4 py-2 text-xs font-medium text-light-muted hover:bg-light-surface dark:border-white/15 dark:text-white/65 dark:hover:bg-white/5"><RotateCcw size={13} aria-hidden="true" /> {featuredStyle === "video" ? "Replay card reveals" : "Replay workflow animations"}</button></div>}
-        <div key={featured ? animationKey : "portfolio-grid"} id={featured ? undefined : "portfolio-projects"} className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div key={featured ? animationKey : "portfolio-grid"} id={featured ? undefined : "portfolio-projects"} className={`mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 ${featured ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
           {projects.map((project, i) => {
-            const card = featured && featuredStyle === "video" ? <FeaturedVideoCard key={project.title} project={project} index={i} onWatch={() => setVideoIndex(i)} onRead={() => setActiveIndex(i)} /> : <ProjectCard key={project.title} project={project} reducedMotion={reducedMotion} featuredIndex={featured ? i : undefined} onOpen={() => setActiveIndex(i)} />;
+            const card = featured && (featuredStyle === "video" || project.walkthrough) ? <FeaturedVideoCard key={project.title} project={project} index={i} onWatch={() => setVideoIndex(i)} onRead={() => setActiveIndex(i)} /> : <ProjectCard key={project.title} project={project} reducedMotion={reducedMotion} featuredIndex={featured ? i : undefined} onOpen={() => setActiveIndex(i)} />;
             return featured ? <div key={project.title} data-featured-card style={{"--reveal-delay":`${i*140}ms`}}>{card}</div> : card;
           })}
         </div>
