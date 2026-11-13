@@ -9,6 +9,23 @@ export const FEATURED_DEMOS = [
 
 export default function FeaturedVideoCard({project,index,onWatch,onRead}) {
   const demo=project.walkthrough || FEATURED_DEMOS[index];
+  if (!demo) return (
+    <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-light-border bg-light-surface shadow-sm dark:border-white/10 dark:bg-base-900/60">
+      <button type="button" onClick={onRead} aria-haspopup="dialog" aria-label={`Read case study: ${project.title}`} className="relative aspect-video w-full overflow-hidden bg-base-950">
+        <img src={project.image} alt={`${project.title} interactive demo preview`} width="1440" height="900" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+        <span className="absolute left-3 top-3 rounded-full bg-black/75 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">Featured app · Interactive demo</span>
+      </button>
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex flex-wrap gap-1.5">{project.tags.map(tag => <span key={tag} className="rounded-full bg-accent-teal/10 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-accent-tealDeep dark:text-accent-tealLight">{tag}</span>)}</div>
+        <h3 className="mt-3 font-display text-base font-semibold text-light-text dark:text-white">{project.title}</h3>
+        <ProjectHighlights project={project} />
+        <div className="mt-auto flex flex-wrap items-center gap-4 pt-5">
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-accent-tealDeep px-4 py-2.5 text-xs font-semibold text-white">Try Demo <ArrowUpRight size={13} aria-hidden="true" /></a>
+          <button type="button" onClick={onRead} aria-haspopup="dialog" aria-label={`Read full case study: ${project.title}`} className="inline-flex min-h-11 items-center text-xs font-semibold text-light-muted hover:underline dark:text-white/70">View Case Study</button>
+        </div>
+      </div>
+    </article>
+  );
   return (
     <article style={project.brand === "lanie" ? {background:"#f7f7ef",color:"#203e32",borderColor:"#c99e4f"} : undefined} className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-light-border bg-light-surface shadow-sm transition-colors hover:border-accent-teal/40 dark:border-white/10 dark:bg-base-900/60 dark:shadow-none">
       <button type="button" onClick={onWatch} aria-haspopup="dialog" aria-label={`Watch demo: ${project.title}`} className="relative aspect-video w-full overflow-hidden bg-base-950 text-white">

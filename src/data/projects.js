@@ -189,7 +189,7 @@ export const PROJECTS = [
   },
 ];
 
-export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0], PROJECTS.find(project => project.brand === "lanie")];
+export const FEATURED_PROJECTS = [PROJECTS[7], PROJECTS[8], PROJECTS[0], PROJECTS.find(project => project.title === "MealPilot — Meal Distribution App")];
 
 export const PROJECT_CATEGORIES = ["AI Agents", "Business Operations", "Content", "Monitoring", "Website Design"];
 

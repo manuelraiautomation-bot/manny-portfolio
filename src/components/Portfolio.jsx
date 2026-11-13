@@ -356,7 +356,7 @@ export default function Portfolio({ featured = false }) {
             <span className="bg-brand-gradient bg-clip-text text-transparent">{featured ? "See it in action." : "actually built"}</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-light-muted dark:text-white/60">
-            {featured ? (featuredStyle === "video" ? "Watch project walkthroughs or explore the case studies, including Lanie, a phone-rental management app." : "Explore selected automation and app projects. Select a project for its case study.") : `Explore all ${PROJECTS.length} projects. See the pain, solution, and benefit at a glance. Select View Case Study for the full explanation.`}
+            {featured ? (featuredStyle === "video" ? "Watch project walkthroughs or explore the case studies, including MealPilot, a meal-distribution management app." : "Explore selected automation and app projects. Select a project for its case study.") : `Explore all ${PROJECTS.length} projects. See the pain, solution, and benefit at a glance. Select View Case Study for the full explanation.`}
           </p>
         </div>
 
@@ -379,7 +379,7 @@ export default function Portfolio({ featured = false }) {
         {featured && <div className="featured-replay mt-7 flex justify-center"><button type="button" onClick={() => setAnimationKey(value => value + 1)} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-light-border px-4 py-2 text-xs font-medium text-light-muted hover:bg-light-surface dark:border-white/15 dark:text-white/65 dark:hover:bg-white/5"><RotateCcw size={13} aria-hidden="true" /> {featuredStyle === "video" ? "Replay card reveals" : "Replay workflow animations"}</button></div>}
         <div key={featured ? animationKey : "portfolio-grid"} id={featured ? undefined : "portfolio-projects"} className={`mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 ${featured ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
           {projects.map((project, i) => {
-            const card = featured && (featuredStyle === "video" || project.walkthrough) ? <FeaturedVideoCard key={project.title} project={project} index={i} onWatch={() => setVideoIndex(i)} onRead={() => setActiveIndex(i)} /> : <ProjectCard key={project.title} project={project} reducedMotion={reducedMotion} featuredIndex={featured ? i : undefined} onOpen={() => setActiveIndex(i)} />;
+            const card = featured && (featuredStyle === "video" || project.walkthrough || i >= 3) ? <FeaturedVideoCard key={project.title} project={project} index={i} onWatch={() => setVideoIndex(i)} onRead={() => setActiveIndex(i)} /> : <ProjectCard key={project.title} project={project} reducedMotion={reducedMotion} featuredIndex={featured ? i : undefined} onOpen={() => setActiveIndex(i)} />;
             return featured ? <div key={project.title} data-featured-card style={{"--reveal-delay":`${i*140}ms`}}>{card}</div> : card;
           })}
         </div>
