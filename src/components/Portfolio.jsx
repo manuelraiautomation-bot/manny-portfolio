@@ -1,3 +1,4 @@
+import ProjectCaseStudy from "./ProjectCaseStudy.jsx";
 import ProjectHighlights from "./ProjectHighlights.jsx";
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import {
@@ -7,9 +8,6 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  AlertCircle,
-  Lightbulb,
-  TrendingUp,
 } from "lucide-react";
 
 import FeaturedVideoCard from "./FeaturedVideoCard.jsx";
@@ -172,6 +170,7 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
   useEffect(() => {
     setExpanded(false);
     setZoomed(false);
+    dialogRef.current?.querySelector("[data-case-scroll]")?.scrollTo(0, 0);
   }, [project]);
 
   if (!project) return null;
@@ -224,7 +223,7 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
           {expanded && <button type="button" onClick={() => setZoomed((value) => !value)} className="rounded-lg border border-white/20 px-3 py-2 hover:bg-white/10">{zoomed ? "Fit image" : "Zoom to full size"}</button>}
           <a href={project.image} target="_blank" rel="noopener noreferrer" className="text-white/80 underline underline-offset-4">Open original image</a>
         </div>}
-        <div className={`min-h-0 overflow-auto ${expanded ? "flex-1" : ""}`}>
+        <div data-case-scroll className={`min-h-0 overflow-auto ${expanded ? "flex-1" : ""}`}>
           {project.image ? <div className={expanded ? "flex min-h-full min-w-full items-start justify-start bg-black" : "aspect-video w-full bg-black"}>
             <img
               src={project.image}
@@ -250,38 +249,7 @@ function CaseStudyModal({ project, onClose, onPrev, onNext }) {
 
             {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-accent-tealDeep px-5 py-3 text-sm font-semibold text-white">{project.demoLabel || "Open website sample"} ↗</a>}
             {project.walkthrough && <a href={project.walkthrough.src} target="_blank" rel="noopener noreferrer" className="ml-3 mt-5 inline-flex rounded-full border border-[#c99e4f] px-5 py-3 text-sm font-semibold text-[#f3d18d]">Watch Walkthrough ↗</a>}
-            {project.status && <p className="mt-5 rounded-xl border border-[#c99e4f]/50 bg-[#173f31] p-4 text-sm text-[#f7f7ef]">{project.status}</p>}
-            {project.features && <section className="mt-6 rounded-xl bg-[#f7f7ef] p-5 text-[#203e32]"><h4 className="font-semibold">Main features</h4><ul className="mt-3 list-disc space-y-2 pl-5 text-sm">{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul><h4 className="mt-5 font-semibold">Platforms</h4><p className="mt-2 text-sm">{project.platforms}</p><h4 className="mt-5 font-semibold">Technology</h4><p className="mt-2 text-sm">{project.technology}</p></section>}
-
-            <div className="mt-6 grid gap-5">
-              <div className="flex gap-3">
-                <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-red-500/15 text-red-400">
-                  <AlertCircle size={16} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wide text-white/50">Pain</div>
-                  <p className="mt-1 text-sm leading-relaxed text-white/80">{project.pain}</p>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/15 text-amber-400">
-                  <Lightbulb size={16} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wide text-white/50">Solution</div>
-                  <p className="mt-1 text-sm leading-relaxed text-white/80">{project.solution}</p>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-accent-teal/15 text-accent-teal">
-                  <TrendingUp size={16} />
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wide text-white/50">Benefit</div>
-                  <p className="mt-1 text-sm leading-relaxed text-white/80">{project.benefit}</p>
-                </div>
-              </div>
-            </div>
+            <ProjectCaseStudy project={project} />
           </div>
         </div>
       </div>
